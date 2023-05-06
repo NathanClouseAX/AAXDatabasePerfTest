@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "AAXDatabasePerfTest (USR) [AAXDatabasePerfTest]", "AAXDatabasePerfTest\AAXDatabasePerfTest.rnrproj", "{3D6DDF89-D143-4CF0-8050-5D8A922AA611}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D6DDF89-D143-4CF0-8050-5D8A922AA611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6DDF89-D143-4CF0-8050-5D8A922AA611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {927E190B-1E4E-4327-8070-E7AEEFEEFA72}
+	EndGlobalSection
+EndGlobal
