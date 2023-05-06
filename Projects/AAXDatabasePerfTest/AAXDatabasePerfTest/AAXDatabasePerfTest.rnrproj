@@ -31,6 +31,41 @@
     <DebugSymbols>true</DebugSymbols>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="AxClass\InsertRecordSetTester">
+      <SubType>Content</SubType>
+      <Name>InsertRecordSetTester</Name>
+      <Link>Classes\InsertRecordSetTester</Link>
+    </Content>
+    <Content Include="AxClass\MultiInsertTester">
+      <SubType>Content</SubType>
+      <Name>MultiInsertTester</Name>
+      <Link>Classes\MultiInsertTester</Link>
+    </Content>
+    <Content Include="AxClass\RecordInsertListTester">
+      <SubType>Content</SubType>
+      <Name>RecordInsertListTester</Name>
+      <Link>Classes\RecordInsertListTester</Link>
+    </Content>
+    <Content Include="AxClass\RecordSortedInsertListTester">
+      <SubType>Content</SubType>
+      <Name>RecordSortedInsertListTester</Name>
+      <Link>Classes\RecordSortedInsertListTester</Link>
+    </Content>
+    <Content Include="AxClass\SingleInsertTester">
+      <SubType>Content</SubType>
+      <Name>SingleInsertTester</Name>
+      <Link>Classes\SingleInsertTester</Link>
+    </Content>
+    <Content Include="AxClass\SysDAInsertObjectTester">
+      <SubType>Content</SubType>
+      <Name>SysDAInsertObjectTester</Name>
+      <Link>Classes\SysDAInsertObjectTester</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
   <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.targets" />
 </Project>

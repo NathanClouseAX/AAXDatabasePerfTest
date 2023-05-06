@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SingleInsertTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class SingleInsertTester
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public static void runCodeTable()
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for Table CustTable
+    /// </summary>
+    public static void runPrimaryTable()
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// test for Table SalesTable
+    /// </summary>
+    public static void runTransactionTable()
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SaleOrderPoolEntity
+    /// </summary> 
+    public static void runCodeDataEntity()
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity CustCustomerV3Entity
+    /// </summary>
+    public static void runPrimaryDataEntity()
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionalDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderHeaderV2Entity
+    /// </summary>
+    public static void runTransactionalDataEntity()
+    {
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
