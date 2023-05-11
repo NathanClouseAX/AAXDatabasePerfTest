@@ -15,6 +15,8 @@
     <ProjectGuid>{3d6ddf89-d143-4cf0-8050-5d8a922aa611}</ProjectGuid>
     <Name>AAXDatabasePerfTest</Name>
     <RootNamespace>AAXDatabasePerfTest</RootNamespace>
+    <StartupObject>SingleInsertTester</StartupObject>
+    <StartupType>Class</StartupType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -32,6 +34,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="AxClass\DatabaseInsertTester">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertTester</Name>
+      <Link>Classes\DatabaseInsertTester</Link>
+    </Content>
     <Content Include="AxClass\InsertRecordSetTester">
       <SubType>Content</SubType>
       <Name>InsertRecordSetTester</Name>
@@ -62,9 +69,39 @@
       <Name>SysDAInsertObjectTester</Name>
       <Link>Classes\SysDAInsertObjectTester</Link>
     </Content>
+    <Content Include="AxEnum\DatabaseInsertTestType">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertTestType</Name>
+      <Link>Base Enums\DatabaseInsertTestType</Link>
+    </Content>
+    <Content Include="AxForm\DatabaseInsertTester">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertTester</Name>
+      <Link>Forms\DatabaseInsertTester</Link>
+    </Content>
+    <Content Include="AxMenuExtension\SystemAdministration.AAXDatabasePerfTest">
+      <SubType>Content</SubType>
+      <Name>SystemAdministration.AAXDatabasePerfTest</Name>
+      <Link>Menu Extensions\SystemAdministration.AAXDatabasePerfTest</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\DatabaseInsertTester">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertTester</Name>
+      <Link>Display Menu Items\DatabaseInsertTester</Link>
+    </Content>
+    <Content Include="AxTable\DatabaseInsertRunHistory">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertRunHistory</Name>
+      <Link>Tables\DatabaseInsertRunHistory</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Base Enums\" />
     <Folder Include="Classes\" />
+    <Folder Include="Display Menu Items\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Menu Extensions\" />
+    <Folder Include="Tables\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
   <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.targets" />

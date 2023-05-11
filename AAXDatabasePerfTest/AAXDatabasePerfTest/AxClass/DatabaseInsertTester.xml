@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DatabaseInsertTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal class DatabaseInsertTester
+{
+
+    //todo make parms
+    static const public int codeTableLoopCount = 1000;
+    static const public int primaryTableLoopCount = 1000;
+    static const public int transactionTableLoopCount = 1000;
+
+    //todo make parms
+    static const public int codeDataEntityLoopCount = 1000;
+    static const public int primaryDataEntityLoopCount = 1000;
+    static const public int transactionDataEntityLoopCount = 1000;
+
+    System.Diagnostics.Stopwatch stopWatch;
+
+    utcdatetime lastStartDateTime;
+    utcdatetime lastEndDateTime;
+
+
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>getEnvironmentMode</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Determine the environment mode. Taken from SysEnvironmentUtil. Why not use SysEnvironmentUtil? It's internal.
+    /// </summary>
+    /// <returns>Dev / TST / Prod</returns>
+    public static EnvironmentMode getEnvironmentMode()
+    {
+        SysEnvironmentModeMap environmentMap;
+
+        try
+        {
+            SysEnvironmentId lcsEnvironmentId = Microsoft.Dynamics.ApplicationPlatform.Environment.EnvironmentFactory::GetApplicationEnvironment().LCS.LCSEnvironmentId.ToString();
+
+            select firstonly environmentMap
+                where environmentMap.SysEnvironmentId == lcsEnvironmentId;
+        }
+        catch
+        {
+            return EnvironmentMode::Dev;
+        }
+
+        return (environmentMap.RecId == 0 ? EnvironmentMode::Dev : environmentMap.EnvironmentMode);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        stopWatch = new System.Diagnostics.Stopwatch();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>startTimer</Name>
+				<Source><![CDATA[
+    public void startTimer()
+    {
+        lastStartDateTime = DateTimeUtil::getSystemDateTime();
+        stopWatch.Start();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>stopTimer</Name>
+				<Source><![CDATA[
+    public void stopTimer()
+    {
+        stopWatch.Stop();
+        lastEndDateTime = DateTimeUtil::getSystemDateTime();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>resetTimer</Name>
+				<Source><![CDATA[
+    public void resetTimer()
+    {
+        stopWatch.Reset();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getTimerMilliseconds</Name>
+				<Source><![CDATA[
+    public int getTimerMilliseconds()
+    {
+        return stopWatch.ElapsedMilliseconds;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>wipeCodeTable</Name>
+				<Source><![CDATA[
+    public void wipeCodeTable()
+    {
+        SalesPool salesPool;
+
+
+        for(int i =0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        {
+            SalesPool = SalesPool::find(int2Str(i), true);
+
+            if(SalesPool)
+            {
+                ttsbegin;
+                SalesPool.delete();
+                ttscommit;
+            }
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>writeRunHistory</Name>
+				<Source><![CDATA[
+    public void writeRunHistory(DatabaseInsertTestType _DatabaseInsertTestType)
+    {
+        DatabaseInsertRunHistory DatabaseInsertRunHistory;
+
+        ttsbegin;
+        DatabaseInsertRunHistory.initValue();
+        DatabaseInsertRunHistory.id = DatabaseInsertRunHistory::nextId();
+        DatabaseInsertRunHistory.startDateTime = this.lastStartDateTime;
+        DatabaseInsertRunHistory.endDateTime = this.lastEndDateTime;
+        DatabaseInsertRunHistory.milliseconds = this.getTimerMilliseconds();
+        DatabaseInsertRunHistory.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
+        DatabaseInsertRunHistory.DatabaseInsertTestType = _DatabaseInsertTestType;
+        DatabaseInsertRunHistory.insert();
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

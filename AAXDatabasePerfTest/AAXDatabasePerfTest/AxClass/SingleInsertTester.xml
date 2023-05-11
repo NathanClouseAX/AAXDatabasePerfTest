@@ -3,7 +3,7 @@
 	<Name>SingleInsertTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class SingleInsertTester
+internal final class SingleInsertTester extends DatabaseInsertTester
 {
 }
 ]]></Declaration>
@@ -13,7 +13,11 @@ internal final class SingleInsertTester
 				<Source><![CDATA[
     public static void main(Args _args)
     {
-        
+        SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+        //SingleInsertTester.runCodeTable();
+
+        SingleInsertTester.runPrimaryTable();
 
     }
 
@@ -25,8 +29,28 @@ internal final class SingleInsertTester
     /// <summary>
     /// Test for table SalesPool
     /// </summary>
-    public static void runCodeTable()
+    public void runCodeTable()
     {
+        SalesPool SalesPool;
+
+        this.wipeCodeTable();
+
+        this.startTimer();
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        {
+            ttsbegin;
+            SalesPool.SalesPoolId = int2Str(i);
+            SalesPool.Name = int2Str(i);
+            SalesPool.insert();
+            ttscommit;
+        }
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::CodeTableSingleInsert);
+
 
     }
 
@@ -38,9 +62,37 @@ internal final class SingleInsertTester
     /// <summary>
     /// Test for Table CustTable
     /// </summary>
-    public static void runPrimaryTable()
+    public void runPrimaryTable()
     {
+        CustTable CustTable;
 
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        CustGroup CustGroup;
+
+        select * from CustGroup;
+
+        NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::primaryTableLoopCount; i++)
+        {
+            CustTable.clear();
+            CustTable.initValue();
+            CustTable.Currency = Ledger::accountingCurrency(CompanyInfo.RecId);
+            CustTable.CustGroup = CustGroup.CustGroup;
+            CustTable.AccountNum = numberSeq.num();
+            CustTable.insert();
+
+            //numberSeq.used();
+
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::PrimaryTableSingleInsert);
     }
 
 ]]></Source>
@@ -51,8 +103,69 @@ internal final class SingleInsertTester
     /// <summary>
     /// test for Table SalesTable
     /// </summary>
-    public static void runTransactionTable()
+    public void runTransactionTable()
     {
+        SalesTable SalesTable;
+        CustTable CustTable;
+
+        RecId custTableMaxRecId;
+        RecId CustTableMinRecId;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        RandomGenerate RandomGenerate = RandomGenerate::construct();
+
+        select maxof(RecId) from CustTable;
+        custTableMaxRecId = CustTable.RecId - 1;
+
+        select minof(RecId) from CustTable;
+        CustTableMinRecId = CustTable.RecId - 1;
+
+        numberSeq numberSeq;
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::transactionTableLoopCount; i++)
+        {
+
+            this.stopTimer();
+
+            System.Random rando = new System.Random();
+
+            int64 randomRecId = (rando.NextDouble() * int64Max() ) / 922337203685477581;
+
+            select firstonly1 * from CustTable
+                where CustTable.RecId >= randomRecId;
+
+            if(!CustTable)
+            {
+                select firstonly1 * from CustTable;
+            }
+
+
+
+            this.startTimer();
+
+            SalesTable.clear();
+            SalesTable.initValue();
+
+            SalesTable.CustAccount = CustTable.AccountNum;
+            SalesTable.initFromCustTable();
+
+            numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
+            numberSeq.used();
+  
+            salesTable.SalesId = numberSeq.num();
+
+            salesTable.insert();
+
+
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::TransactionTableSingleInsert);
 
     }
 
