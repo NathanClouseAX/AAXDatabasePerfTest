@@ -85,7 +85,30 @@ public class DatabaseInsertTester extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>SingleInsertCodeTableButtonCopy1</Name>
+				<Name>SingleInsertCodeEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -100,6 +123,167 @@ public class DatabaseInsertTester extends FormRun
     
             SingleInsertTester SingleInsertTester = new SingleInsertTester();
     
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertCodeTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertPrimaryTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+            
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertTransactionTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+            
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertCodeDataEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+            
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertPrimaryDataEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+            
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertTransactionDataEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+            
             SingleInsertTester.runCodeTable();
         }
 
@@ -258,6 +442,119 @@ public class DatabaseInsertTester extends FormRun
 								</Controls>
 								<Style>FastTabs</Style>
 							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntity</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntity</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
 						</Controls>
 						<Caption>Single Insert Transaction</Caption>
 					</AxFormControl>
@@ -293,7 +590,7 @@ public class DatabaseInsertTester extends FormRun
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormTabControl">
-								<Name>MultiInsertGeneral</Name>
+								<Name>MultiInsertCodeTableTab</Name>
 								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
@@ -307,14 +604,14 @@ public class DatabaseInsertTester extends FormRun
 										<Controls>
 											<AxFormControl xmlns=""
 												i:type="AxFormGroupControl">
-												<Name>FormGroupControl1Copy7</Name>
+												<Name>MultiInsertCodeTableGroup</Name>
 												<Type>Group</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
 														i:type="AxFormButtonControl">
-														<Name>SingleInsertCodeTableButtonCopy1</Name>
+														<Name>MultiInsertCodeTableButton</Name>
 														<Type>Button</Type>
 														<FormControlExtension
 															i:nil="true" />
@@ -324,6 +621,191 @@ public class DatabaseInsertTester extends FormRun
 											</AxFormControl>
 										</Controls>
 										<Caption>Multi Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertPrimaryTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertPrimaryTable</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertPrimaryTableGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertPrimaryTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Primary Table</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertTransactionTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertTransactionTable</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertTransactionTableGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertTransactionTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Transaction Table</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertCodeDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertCodeDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertCodeDataEntityGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertCodeDataEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Code Entity</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Code Data Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertPrimaryDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertPrimaryDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertPrimaryDataEntityGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertPrimaryDataEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Primary Entity</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertTransactionDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertTransactionDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertTransactionDataEntityGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertTransactionDataEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Transaction Entity</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Transaction Entity</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>

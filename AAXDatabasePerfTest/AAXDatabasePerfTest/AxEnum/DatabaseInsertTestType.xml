@@ -76,72 +76,72 @@
 			<Value>17</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>CodeDataEntitySingleInsertCopy1</Name>
+			<Name>CodeDataEntitySingleInsert</Name>
 			<Label>Code Table Single Insert</Label>
 			<Value>18</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>CodeDataEntityMultiInsertCopy1</Name>
+			<Name>CodeDataEntityMultiInsert</Name>
 			<Value>19</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>CodeDataEntityInsertRecordsetInsertCopy1</Name>
+			<Name>CodeDataEntityInsertRecordsetInsert</Name>
 			<Value>20</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>CodeDataEntityRecordInsertListInsertCopy1</Name>
+			<Name>CodeDataEntityRecordInsertListInsert</Name>
 			<Value>21</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>CodeDataEntityRecordSortedInsertListInsertCopy1</Name>
+			<Name>CodeDataEntityRecordSortedInsertListInsert</Name>
 			<Value>22</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>CodeDataEntitySysDAInsertObjectCopy1</Name>
+			<Name>CodeDataEntitySysDAInsertObject</Name>
 			<Value>23</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>PrimaryDataEntitySysDAInsertObjectCopy1</Name>
+			<Name>PrimaryDataEntitySysDAInsertObject</Name>
 			<Value>24</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>PrimaryDataEntityMultiInsertCopy1</Name>
+			<Name>PrimaryDataEntityMultiInsert</Name>
 			<Value>25</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>PrimaryDataEntityInsertRecordsetInsertCopy1</Name>
+			<Name>PrimaryDataEntityInsertRecordsetInsert</Name>
 			<Value>26</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>PrimaryDataEntityecordInsertListInsertCopy1</Name>
+			<Name>PrimaryDataEntityecordInsertListInsert</Name>
 			<Value>27</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>PrimaryDataEntityRecordSortedInsertListInsertCopy1</Name>
+			<Name>PrimaryDataEntityRecordSortedInsertListInsert</Name>
 			<Value>28</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>PrimaryDataEntitySingleInsertCopy1</Name>
+			<Name>PrimaryDataEntitySingleInsert</Name>
 			<Value>29</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>TransactionDataEntitySysDAInsertObjectCopy1</Name>
+			<Name>TransactionDataEntitySysDAInsertObject</Name>
 			<Value>30</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>TransactionDataEntityMultiInsertCopy1</Name>
+			<Name>TransactionDataEntityMultiInsert</Name>
 			<Value>31</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>TransactionDataEntityInsertRecordsetInsertCopy1</Name>
+			<Name>TransactionDataEntityInsertRecordsetInsert</Name>
 			<Value>32</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>TransactionDataEntityRecordInsertListInsertCopy1</Name>
+			<Name>TransactionDataEntityRecordInsertListInsert</Name>
 			<Value>33</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>TransactionDataEntityRecordSortedInsertListInsertCopy1</Name>
+			<Name>TransactionDataEntityRecordSortedInsertListInsert</Name>
 			<Value>34</Value>
 		</AxEnumValue>
 		<AxEnumValue>

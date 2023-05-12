@@ -17,7 +17,15 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         //SingleInsertTester.runCodeTable();
 
-        SingleInsertTester.runPrimaryTable();
+        //SingleInsertTester.runPrimaryTable();
+
+        SingleInsertTester.runTransactionTable();
+
+        SingleInsertTester.runCodeDataEntity();
+
+        SingleInsertTester.runPrimaryDataEntity();
+
+        SingleInsertTester.runTransactionalDataEntity();
 
     }
 
@@ -175,11 +183,29 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 				<Name>runCodeDataEntity</Name>
 				<Source><![CDATA[
     /// <summary>
-    /// Test for data entity SaleOrderPoolEntity
+    /// Test for data entity SalesOrderPoolEntity
     /// </summary> 
-    public static void runCodeDataEntity()
+    public void runCodeDataEntity()
     {
+        SalesOrderPoolEntity SalesOrderPoolEntity;
 
+        this.wipeCodeTable();
+
+        this.startTimer();
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::codeDataEntityLoopCount; i++)
+        {
+            ttsbegin;
+            SalesOrderPoolEntity.PoolId = int2Str(i);
+            SalesOrderPoolEntity.PoolName = int2Str(i);
+            SalesOrderPoolEntity.insert();
+            ttscommit;
+        }
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::CodeDataEntitySingleInsert);
     }
 
 ]]></Source>
@@ -190,9 +216,35 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity CustCustomerV3Entity
     /// </summary>
-    public static void runPrimaryDataEntity()
+    public void runPrimaryDataEntity()
     {
+        CustCustomerV3Entity CustCustomerV3Entity;
 
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        CustGroup CustGroup;
+
+        select * from CustGroup;
+
+        NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::primaryTableLoopCount; i++)
+        {
+            CustCustomerV3Entity.clear();
+            CustCustomerV3Entity.initValue();
+            CustCustomerV3Entity.SalesCurrencyCode = Ledger::accountingCurrency(CompanyInfo.RecId);
+            CustCustomerV3Entity.CustomerGroupId = CustGroup.CustGroup;
+            CustCustomerV3Entity.SalesAccountNumber = numberSeq.num();
+            CustCustomerV3Entity.insert();
+
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::PrimaryDataEntitySingleInsert);
     }
 
 ]]></Source>
@@ -203,9 +255,71 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderHeaderV2Entity
     /// </summary>
-    public static void runTransactionalDataEntity()
+    public void runTransactionalDataEntity()
     {
+        SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
+        CustTable CustTable;
 
+        RecId custTableMaxRecId;
+        RecId CustTableMinRecId;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        RandomGenerate RandomGenerate = RandomGenerate::construct();
+
+        select maxof(RecId) from CustTable;
+        custTableMaxRecId = CustTable.RecId - 1;
+
+        select minof(RecId) from CustTable;
+        CustTableMinRecId = CustTable.RecId - 1;
+
+        numberSeq numberSeq;
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::transactionTableLoopCount; i++)
+        {
+
+            this.stopTimer();
+
+            System.Random rando = new System.Random();
+
+            int64 randomRecId = (rando.NextDouble() * int64Max() ) / 922337203685477581;
+
+            select firstonly1 * from CustTable
+                where CustTable.RecId >= randomRecId;
+
+            if(!CustTable)
+            {
+                select firstonly1 * from CustTable;
+            }
+
+
+
+            this.startTimer();
+
+            SalesOrderHeaderV2Entity.clear();
+
+            SalesOrderHeaderV2Entity.skipNumberSequenceCheck(false);
+
+            SalesOrderHeaderV2Entity.initValue();
+
+            SalesOrderHeaderV2Entity.OrderingCustomerAccountNumber = CustTable.AccountNum;
+
+            //numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
+            //numberSeq.used();
+
+            //SalesOrderHeaderV2Entity.SalesId = numberSeq.num();
+
+            SalesOrderHeaderV2Entity.insert();
+
+
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::TransactionTableSingleInsert);
     }
 
 ]]></Source>
