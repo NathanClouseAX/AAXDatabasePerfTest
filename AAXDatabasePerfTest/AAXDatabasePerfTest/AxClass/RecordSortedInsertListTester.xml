@@ -3,11 +3,79 @@
 	<Name>RecordSortedInsertListTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class RecordSortedInsertListTester
+internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 {
 }
-
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
+
+        RecordSortedInsertListTester.runCodeTable();
+
+        //MultiInsertTester.runPrimaryTable();
+
+        //MultiInsertTester.runTransactionTable();
+
+        //MultiInsertTester.runCodeDataEntity();
+
+        //MultiInsertTester.runPrimaryDataEntity();
+
+        //MultiInsertTester.runTransactionalDataEntity();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable()
+    {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+
+        Connection con = new Connection();
+
+        RecordSortedList SalesPoolList;
+        SalesPoolList = new RecordSortedList(tableNum(SalesPool));
+        SalesPoolList.sortOrder(fieldName2Id(tableNum(SalesPool), 'SalesPoolId'));
+
+        SalesPool SalesPool;
+
+        this.wipeCodeTable();
+
+        this.startTimer();
+        ttsbegin;
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        {
+            SalesPool.SalesPoolId = int2Str(i);
+            SalesPool.Name = int2Str(i);
+
+            SalesPoolList.ins(SalesPool);
+            //interesting call out: here insertDatabase doesn't reset what is being inserted,
+            //SalesPoolList.insertDatabase(con);
+
+        }
+        SalesPoolList.insertDatabase(con);
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::RecordSortedInsertListInsert, DatabaseInsertWorkloadType::CodeTable);
+
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>tmpSalesPool</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class tmpSalesPool extends common
+{
+    
+
+}
+]]></Declaration>
+		<Methods />
+	</SourceCode>
+	<DeveloperDocumentation>@SYS124504</DeveloperDocumentation>
+	<EntityRelationshipType>Relationship</EntityRelationshipType>
+	<Label>@SYS4926</Label>
+	<TableGroup>Group</TableGroup>
+	<TitleField1>SalesPoolId</TitleField1>
+	<TitleField2>Name</TitleField2>
+	<AllowChangeTracking>No</AllowChangeTracking>
+	<ClusteredIndex>SalesPoolIdx</ClusteredIndex>
+	<CreateRecIdIndex>No</CreateRecIdIndex>
+	<DataSharingType>Duplicate</DataSharingType>
+	<Modules>SalesAndMarketing</Modules>
+	<PrimaryIndex>SalesPoolIdx</PrimaryIndex>
+	<TableContents>BaseDefaultData</TableContents>
+	<DeleteActions>
+		<AxTableDeleteAction>
+			<Name>CustTable</Name>
+			<DeleteAction>Restricted</DeleteAction>
+			<Relation></Relation>
+			<Table>CustTable</Table>
+		</AxTableDeleteAction>
+		<AxTableDeleteAction>
+			<Name>SalesParameters</Name>
+			<DeleteAction>Restricted</DeleteAction>
+			<Relation></Relation>
+			<Table>SalesParameters</Table>
+		</AxTableDeleteAction>
+		<AxTableDeleteAction>
+			<Name>SalesTable</Name>
+			<DeleteAction>Restricted</DeleteAction>
+			<Relation></Relation>
+			<Table>SalesTable</Table>
+		</AxTableDeleteAction>
+	</DeleteActions>
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>SalesPoolId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Name</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>Pool</Name>
+			<Label>@SYS10507</Label>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>SalesPoolId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Name</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>Name</Name>
+			<AssetClassification>Customer Content</AssetClassification>
+			<ExtendedDataType>Name</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>SalesPoolId</Name>
+			<AllowEdit>No</AllowEdit>
+			<AssetClassification>Customer Content</AssetClassification>
+			<ExtendedDataType>SalesPoolId</ExtendedDataType>
+			<Mandatory>Yes</Mandatory>
+		</AxTableField>
+	</Fields>
+	<FullTextIndexes />
+	<Indexes>
+		<AxTableIndex>
+			<Name>SalesPoolIdx</Name>
+			<AlternateKey>Yes</AlternateKey>
+			<Fields>
+				<AxTableIndexField>
+					<DataField>SalesPoolId</DataField>
+				</AxTableIndexField>
+			</Fields>
+		</AxTableIndex>
+	</Indexes>
+	<Mappings />
+	<Relations />
+	<StateMachines />
+</AxTable>

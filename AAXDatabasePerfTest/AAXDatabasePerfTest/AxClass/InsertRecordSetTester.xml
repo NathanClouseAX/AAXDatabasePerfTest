@@ -3,11 +3,96 @@
 	<Name>InsertRecordSetTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class InsertRecordSetTester
+internal final class InsertRecordSetTester extends DatabaseInsertTester
 {
 }
-
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
+
+        InsertRecordSetTester.runCodeTable();
+
+        //MultiInsertTester.runPrimaryTable();
+
+        //MultiInsertTester.runTransactionTable();
+
+        //MultiInsertTester.runCodeDataEntity();
+
+        //MultiInsertTester.runPrimaryDataEntity();
+
+        //MultiInsertTester.runTransactionalDataEntity();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable()
+    {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+
+        SalesPool SalesPool;
+        tmpSalesPool tmpSalesPool;
+
+        this.wipeCodeTable();
+        this.filltmpCodeTable();
+
+        this.startTimer();
+
+        //records already created in tmpSalesPool, just measuring time cost to get from there to target
+        ttsbegin;
+        insert_recordset SalesPool (SalesPoolId, Name)
+            select SalesPoolId, Name from tmpSalesPool;
+
+        ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::InsertRecordsetInsert, DatabaseInsertWorkloadType::CodeTable);
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>filltmpCodeTable</Name>
+				<Source><![CDATA[
+    public void filltmpCodeTable()
+    {
+        tmpSalesPool tmpSalesPool;
+
+        delete_from tmpSalesPool;
+
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        {
+            tmpSalesPool.SalesPoolId = int2Str(i);
+            tmpSalesPool.Name = int2Str(i);
+            tmpSalesPool.insert();
+        }
+
+        ttscommit;
+
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

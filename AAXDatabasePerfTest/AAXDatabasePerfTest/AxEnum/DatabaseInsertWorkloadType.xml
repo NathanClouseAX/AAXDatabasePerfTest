@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxEnum xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>DatabaseInsertTestType</Name>
+	<Name>DatabaseInsertWorkloadType</Name>
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
-			<Name>SingleInsert</Name>
-			<Label>Code Table Single Insert</Label>
+			<Name>CodeTable</Name>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>MultiInsert</Name>
+			<Name>PrimaryTable</Name>
 			<Value>1</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>InsertRecordsetInsert</Name>
+			<Name>TransactionTable</Name>
 			<Value>2</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>RecordInsertListInsert</Name>
+			<Name>CodeDataEntity</Name>
 			<Value>3</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>RecordSortedInsertListInsert</Name>
+			<Name>PrimaryDataEntity</Name>
 			<Value>4</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>SysDAInsertObject</Name>
+			<Name>TransactionDataEntity</Name>
 			<Value>5</Value>
-		</AxEnumValue>
-		<AxEnumValue>
-			<Name>QueryInsertRecordSet</Name>
-			<Value>6</Value>
 		</AxEnumValue>
 	</EnumValues>
 	<IsExtensible>true</IsExtensible>

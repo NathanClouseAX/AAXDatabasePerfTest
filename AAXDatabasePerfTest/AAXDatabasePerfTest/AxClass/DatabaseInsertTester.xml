@@ -21,6 +21,8 @@ internal class DatabaseInsertTester
     utcdatetime lastStartDateTime;
     utcdatetime lastEndDateTime;
 
+    int recordCount;
+
 
 
 }
@@ -133,20 +135,33 @@ internal class DatabaseInsertTester
 			<Method>
 				<Name>writeRunHistory</Name>
 				<Source><![CDATA[
-    public void writeRunHistory(DatabaseInsertTestType _DatabaseInsertTestType)
+    public void writeRunHistory(DatabaseInsertTestType _DatabaseInsertTestType, DatabaseInsertWorkloadType _databaseInsertWorkloadType)
     {
         DatabaseInsertRunHistory DatabaseInsertRunHistory;
 
         ttsbegin;
         DatabaseInsertRunHistory.initValue();
-        DatabaseInsertRunHistory.id = DatabaseInsertRunHistory::nextId();
         DatabaseInsertRunHistory.startDateTime = this.lastStartDateTime;
         DatabaseInsertRunHistory.endDateTime = this.lastEndDateTime;
         DatabaseInsertRunHistory.milliseconds = this.getTimerMilliseconds();
         DatabaseInsertRunHistory.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
         DatabaseInsertRunHistory.DatabaseInsertTestType = _DatabaseInsertTestType;
+        DatabaseInsertRunHistory.DatabaseInsertRecordCount = this.parmRecordCount();
+        DatabaseInsertRunHistory.DatabaseInsertWorkloadType = _databaseInsertWorkloadType;
         DatabaseInsertRunHistory.insert();
         ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmRecordCount</Name>
+				<Source><![CDATA[
+    public int parmRecordCount(int _recordCount = recordCount)
+    {
+        recordCount = _recordCount;
+
+        return(recordCount);
     }
 
 ]]></Source>

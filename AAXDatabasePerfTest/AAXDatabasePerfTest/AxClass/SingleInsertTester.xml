@@ -5,6 +5,13 @@
 		<Declaration><![CDATA[
 internal final class SingleInsertTester extends DatabaseInsertTester
 {
+    /// <summary>
+    /// class to test inserting records 1 per transaction in batches
+    /// </summary>
+    /// <param name = "_args"></param>
+
+
+
 }
 ]]></Declaration>
 		<Methods>
@@ -15,9 +22,9 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     {
         SingleInsertTester SingleInsertTester = new SingleInsertTester();
 
-        //SingleInsertTester.runCodeTable();
+        SingleInsertTester.runCodeTable();
 
-        //SingleInsertTester.runPrimaryTable();
+        SingleInsertTester.runPrimaryTable();
 
         SingleInsertTester.runTransactionTable();
 
@@ -26,6 +33,13 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         SingleInsertTester.runPrimaryDataEntity();
 
         SingleInsertTester.runTransactionalDataEntity();
+
+        //new SingleInsertTester().runCodeTable();
+        //new MultiInsertTester().runCodeTable();
+        //new InsertRecordSetTester().runCodeTable();
+        //new RecordInsertListTester().runCodeTable();
+        //new RecordSortedInsertListTester().runCodeTable();
+
 
     }
 
@@ -39,6 +53,8 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// </summary>
     public void runCodeTable()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
         SalesPool SalesPool;
 
         this.wipeCodeTable();
@@ -46,7 +62,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         this.startTimer();
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
             ttsbegin;
             SalesPool.SalesPoolId = int2Str(i);
@@ -57,7 +73,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::CodeTableSingleInsert);
+        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::CodeTable);
 
 
     }
@@ -72,6 +88,9 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// </summary>
     public void runPrimaryTable()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::primaryTableLoopCount);
+
         CustTable CustTable;
 
         CompanyInfo CompanyInfo = CompanyInfo::find();
@@ -82,11 +101,11 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
 
         this.startTimer();
-        ttsbegin;
 
         //inline on purpose
         for(int i = 0; i <= SingleInsertTester::primaryTableLoopCount; i++)
         {
+            ttsbegin;
             CustTable.clear();
             CustTable.initValue();
             CustTable.Currency = Ledger::accountingCurrency(CompanyInfo.RecId);
@@ -95,12 +114,13 @@ internal final class SingleInsertTester extends DatabaseInsertTester
             CustTable.insert();
 
             //numberSeq.used();
+            ttscommit;
 
         }
-        ttscommit;
+
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::PrimaryTableSingleInsert);
+        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::PrimaryTable);
     }
 
 ]]></Source>
@@ -113,6 +133,9 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// </summary>
     public void runTransactionTable()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::transactionTableLoopCount);
+
         SalesTable SalesTable;
         CustTable CustTable;
 
@@ -131,12 +154,11 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         numberSeq numberSeq;
 
         this.startTimer();
-        ttsbegin;
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::transactionTableLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
-
+            ttsbegin;
             this.stopTimer();
 
             System.Random rando = new System.Random();
@@ -168,12 +190,14 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
             salesTable.insert();
 
+            ttscommit;
+
 
         }
-        ttscommit;
+
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::TransactionTableSingleInsert);
+        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::TransactionTable);
 
     }
 
@@ -187,6 +211,9 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// </summary> 
     public void runCodeDataEntity()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeDataEntityLoopCount);
+
         SalesOrderPoolEntity SalesOrderPoolEntity;
 
         this.wipeCodeTable();
@@ -194,7 +221,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         this.startTimer();
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::codeDataEntityLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
             ttsbegin;
             SalesOrderPoolEntity.PoolId = int2Str(i);
@@ -205,7 +232,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::CodeDataEntitySingleInsert);
+        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::CodeDataEntity);
     }
 
 ]]></Source>
@@ -218,6 +245,9 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// </summary>
     public void runPrimaryDataEntity()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::primaryTableLoopCount);
+
         CustCustomerV3Entity CustCustomerV3Entity;
 
         CompanyInfo CompanyInfo = CompanyInfo::find();
@@ -228,23 +258,23 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
 
         this.startTimer();
-        ttsbegin;
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::primaryTableLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
+            ttsbegin;
             CustCustomerV3Entity.clear();
             CustCustomerV3Entity.initValue();
             CustCustomerV3Entity.SalesCurrencyCode = Ledger::accountingCurrency(CompanyInfo.RecId);
             CustCustomerV3Entity.CustomerGroupId = CustGroup.CustGroup;
             CustCustomerV3Entity.SalesAccountNumber = numberSeq.num();
             CustCustomerV3Entity.insert();
-
+            ttscommit;
         }
-        ttscommit;
+
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::PrimaryDataEntitySingleInsert);
+        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::PrimaryDataEntity);
     }
 
 ]]></Source>
@@ -257,6 +287,9 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// </summary>
     public void runTransactionalDataEntity()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::transactionTableLoopCount);
+
         SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
         CustTable CustTable;
 
@@ -275,12 +308,12 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         numberSeq numberSeq;
 
         this.startTimer();
-        ttsbegin;
+
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::transactionTableLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
-
+            ttsbegin;
             this.stopTimer();
 
             System.Random rando = new System.Random();
@@ -292,34 +325,36 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
             if(!CustTable)
             {
-                select firstonly1 * from CustTable;
+                select firstonly1 * from CustTable
+                    where CustTable.AccountNum != '';
             }
-
-
 
             this.startTimer();
 
             SalesOrderHeaderV2Entity.clear();
 
-            SalesOrderHeaderV2Entity.skipNumberSequenceCheck(false);
-
             SalesOrderHeaderV2Entity.initValue();
 
             SalesOrderHeaderV2Entity.OrderingCustomerAccountNumber = CustTable.AccountNum;
+            SalesOrderHeaderV2Entity.InvoiceCustomerAccountNumber = CustTable.AccountNum;
 
-            //numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
-            //numberSeq.used();
+            SalesOrderHeaderV2Entity.SalesOrderName = CustTable.name();
 
-            //SalesOrderHeaderV2Entity.SalesId = numberSeq.num();
+
+            numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
+            numberSeq.used();
+
+            SalesOrderHeaderV2Entity.SalesOrderNumber = numberSeq.num();
 
             SalesOrderHeaderV2Entity.insert();
 
+            ttscommit;
 
         }
-        ttscommit;
+
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::TransactionTableSingleInsert);
+        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::TransactionDataEntity);
     }
 
 ]]></Source>

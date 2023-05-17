@@ -3,11 +3,73 @@
 	<Name>RecordInsertListTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class RecordInsertListTester
+internal final class RecordInsertListTester extends DatabaseInsertTester
 {
 }
-
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
+
+        RecordInsertListTester.runCodeTable();
+
+        //MultiInsertTester.runPrimaryTable();
+
+        //MultiInsertTester.runTransactionTable();
+
+        //MultiInsertTester.runCodeDataEntity();
+
+        //MultiInsertTester.runPrimaryDataEntity();
+
+        //MultiInsertTester.runTransactionalDataEntity();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable()
+    {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+
+        RecordInsertList SalesPoolList;
+        SalesPoolList = new RecordInsertList(tableNum(SalesPool));
+        SalesPool SalesPool;
+
+        this.wipeCodeTable();
+
+        this.startTimer();
+        ttsbegin;
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        {
+            SalesPool.SalesPoolId = int2Str(i);
+            SalesPool.Name = int2Str(i);
+
+            SalesPoolList.add(SalesPool);
+
+        }
+        SalesPoolList.insertDatabase();
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::CodeTable);
+
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

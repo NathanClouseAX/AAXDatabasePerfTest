@@ -12,13 +12,32 @@ public class DatabaseInsertRunHistory extends common
 			<Method>
 				<Name>nextId</Name>
 				<Source><![CDATA[
-    public static int nextId()
+    public int nextId()
     {
         DatabaseInsertRunHistory DatabaseInsertRunHistory;
 
         select maxof(id) from DatabaseInsertRunHistory;
 
         return DatabaseInsertRunHistory.id + 1;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>insert</Name>
+				<Source><![CDATA[
+    public void insert()
+    {
+
+        if(this.id == 0)
+        {
+            this.id = this.nextId();
+        }
+
+        this.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
+
+
+        super();
     }
 
 ]]></Source>
@@ -78,6 +97,16 @@ public class DatabaseInsertRunHistory extends common
 			i:type="AxTableFieldEnum">
 			<Name>DatabaseInsertTestType</Name>
 			<EnumType>DatabaseInsertTestType</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>DatabaseInsertWorkloadType</Name>
+			<EnumType>DatabaseInsertWorkloadType</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldInt">
+			<Name>DatabaseInsertRecordCount</Name>
+			<ExtendedDataType>DatabaseInsertRecordCount</ExtendedDataType>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

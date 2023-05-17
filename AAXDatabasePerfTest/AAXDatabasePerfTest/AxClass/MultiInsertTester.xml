@@ -3,11 +3,352 @@
 	<Name>MultiInsertTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class MultiInsertTester
+internal final class MultiInsertTester extends DatabaseInsertTester
 {
 }
-
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        MultiInsertTester MultiInsertTester = new MultiInsertTester();
+
+        MultiInsertTester.runCodeTable();
+
+        MultiInsertTester.runPrimaryTable();
+
+        MultiInsertTester.runTransactionTable();
+
+        MultiInsertTester.runCodeDataEntity();
+
+        MultiInsertTester.runPrimaryDataEntity();
+
+        MultiInsertTester.runTransactionalDataEntity();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable()
+    {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+
+        SalesPool SalesPool;
+
+        this.wipeCodeTable();
+
+        this.startTimer();
+
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            SalesPool.SalesPoolId = int2Str(i);
+            SalesPool.Name = int2Str(i);
+            SalesPool.insert();
+        }
+
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::CodeTable);
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for Table CustTable
+    /// </summary>
+    public void runPrimaryTable()
+    {
+        //setup
+        this.parmRecordCount(MultiInsertTester::primaryTableLoopCount);
+
+        CustTable CustTable;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        CustGroup CustGroup;
+
+        select * from CustGroup;
+
+        NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            
+            CustTable.clear();
+            CustTable.initValue();
+            CustTable.Currency = Ledger::accountingCurrency(CompanyInfo.RecId);
+            CustTable.CustGroup = CustGroup.CustGroup;
+            CustTable.AccountNum = numberSeq.num();
+            CustTable.insert();
+
+            //numberSeq.used();
+
+
+        }
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::PrimaryTable);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// test for Table SalesTable
+    /// </summary>
+    public void runTransactionTable()
+    {
+        //setup
+        this.parmRecordCount(MultiInsertTester::transactionTableLoopCount);
+
+        SalesTable SalesTable;
+        CustTable CustTable;
+
+        RecId custTableMaxRecId;
+        RecId CustTableMinRecId;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        RandomGenerate RandomGenerate = RandomGenerate::construct();
+
+        select maxof(RecId) from CustTable;
+        custTableMaxRecId = CustTable.RecId - 1;
+
+        select minof(RecId) from CustTable;
+        CustTableMinRecId = CustTable.RecId - 1;
+
+        numberSeq numberSeq;
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            this.stopTimer();
+
+            System.Random rando = new System.Random();
+
+            int64 randomRecId = (rando.NextDouble() * int64Max() ) / 922337203685477581;
+
+            select firstonly1 * from CustTable
+                where CustTable.RecId >= randomRecId;
+
+            if(!CustTable)
+            {
+                select firstonly1 * from CustTable;
+            }
+
+
+
+            this.startTimer();
+
+            SalesTable.clear();
+            SalesTable.initValue();
+
+            SalesTable.CustAccount = CustTable.AccountNum;
+            SalesTable.initFromCustTable();
+
+            numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
+            numberSeq.used();
+  
+            salesTable.SalesId = numberSeq.num();
+
+            salesTable.insert();
+        }
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::TransactionTable);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderPoolEntity
+    /// </summary>
+    public void runCodeDataEntity()
+    {
+        //setup
+        this.parmRecordCount(MultiInsertTester::codeDataEntityLoopCount);
+
+        SalesOrderPoolEntity SalesOrderPoolEntity;
+
+        this.wipeCodeTable();
+
+        this.startTimer();
+
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            
+            SalesOrderPoolEntity.PoolId = int2Str(i);
+            SalesOrderPoolEntity.PoolName = int2Str(i);
+            SalesOrderPoolEntity.insert();
+            
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::CodeDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity CustCustomerV3Entity
+    /// </summary>
+    public void runPrimaryDataEntity()
+    {
+        //setup
+        this.parmRecordCount(MultiInsertTester::primaryTableLoopCount);
+
+        CustCustomerV3Entity CustCustomerV3Entity;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        CustGroup CustGroup;
+
+        select * from CustGroup;
+
+        NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+
+        this.startTimer();
+
+        ttsbegin;
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            CustCustomerV3Entity.clear();
+            CustCustomerV3Entity.initValue();
+            CustCustomerV3Entity.SalesCurrencyCode = Ledger::accountingCurrency(CompanyInfo.RecId);
+            CustCustomerV3Entity.CustomerGroupId = CustGroup.CustGroup;
+            CustCustomerV3Entity.SalesAccountNumber = numberSeq.num();
+            CustCustomerV3Entity.OrganizationName = CustCustomerV3Entity.SalesAccountNumber;
+            CustCustomerV3Entity.PartyType = "Organization";
+            CustCustomerV3Entity.insert();
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::PrimaryDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionalDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderHeaderV2Entity
+    /// </summary>
+    public void runTransactionalDataEntity()
+    {
+        //setup
+        this.parmRecordCount(MultiInsertTester::transactionTableLoopCount);
+
+        SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
+        CustTable CustTable;
+
+        RecId custTableMaxRecId;
+        RecId CustTableMinRecId;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        RandomGenerate RandomGenerate = RandomGenerate::construct();
+
+        select maxof(RecId) from CustTable;
+        custTableMaxRecId = CustTable.RecId - 1;
+
+        select minof(RecId) from CustTable;
+        CustTableMinRecId = CustTable.RecId - 1;
+
+        numberSeq numberSeq;
+
+        this.startTimer();
+
+        ttsbegin;
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            
+            this.stopTimer();
+
+            System.Random rando = new System.Random();
+
+            int64 randomRecId = (rando.NextDouble() * int64Max() ) / 922337203685477581;
+
+            select firstonly1 * from CustTable
+                where CustTable.RecId >= randomRecId;
+
+            if(!CustTable)
+            {
+                select firstonly1 * from CustTable
+                    where CustTable.AccountNum != '';
+            }
+
+            this.startTimer();
+
+            SalesOrderHeaderV2Entity.clear();
+
+            SalesOrderHeaderV2Entity.initValue();
+
+            SalesOrderHeaderV2Entity.OrderingCustomerAccountNumber = CustTable.AccountNum;
+            SalesOrderHeaderV2Entity.InvoiceCustomerAccountNumber = CustTable.AccountNum;
+
+            SalesOrderHeaderV2Entity.SalesOrderName = CustTable.name();
+
+
+            numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
+            numberSeq.used();
+
+            SalesOrderHeaderV2Entity.SalesOrderNumber = numberSeq.num();
+
+            SalesOrderHeaderV2Entity.insert();
+
+        }
+
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>
