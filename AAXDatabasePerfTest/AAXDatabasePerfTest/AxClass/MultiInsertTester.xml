@@ -11,6 +11,7 @@ internal final class MultiInsertTester extends DatabaseInsertTester
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
+    //done
     public static void main(Args _args)
     {
         MultiInsertTester MultiInsertTester = new MultiInsertTester();

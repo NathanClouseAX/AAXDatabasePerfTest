@@ -5,12 +5,14 @@
 		<Declaration><![CDATA[
 internal final class InsertRecordSetTester extends DatabaseInsertTester
 {
+
 }
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
+    //done - can only insert from select, not a good fit for primary and transactional workloads
     public static void main(Args _args)
     {
         InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
@@ -21,7 +23,7 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
 
         //MultiInsertTester.runTransactionTable();
 
-        //MultiInsertTester.runCodeDataEntity();
+        InsertRecordSetTester.runCodeDataEntity();
 
         //MultiInsertTester.runPrimaryDataEntity();
 
@@ -68,25 +70,35 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>filltmpCodeTable</Name>
+				<Name>runCodeDataEntity</Name>
 				<Source><![CDATA[
-    public void filltmpCodeTable()
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeDataEntity()
     {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+
+        SalesOrderPoolEntity SalesOrderPoolEntity;
         tmpSalesPool tmpSalesPool;
 
-        delete_from tmpSalesPool;
+        this.wipeCodeTable();
+        this.filltmpCodeTable();
 
+        this.startTimer();
+
+        //records already created in tmpSalesPool, just measuring time cost to get from there to target
         ttsbegin;
-
-        //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
-        {
-            tmpSalesPool.SalesPoolId = int2Str(i);
-            tmpSalesPool.Name = int2Str(i);
-            tmpSalesPool.insert();
-        }
+        insert_recordset SalesOrderPoolEntity (PoolId, PoolName)
+            select SalesPoolId, Name from tmpSalesPool;
 
         ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::InsertRecordsetInsert, DatabaseInsertWorkloadType::CodeDataEntity);
 
 
     }

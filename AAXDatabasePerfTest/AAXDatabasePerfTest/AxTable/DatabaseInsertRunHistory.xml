@@ -34,6 +34,8 @@ public class DatabaseInsertRunHistory extends common
             this.id = this.nextId();
         }
 
+        this.RecordsPerSecond = (this.DatabaseInsertRecordCount / this.milliseconds) * 1000;
+
         this.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
 
 
@@ -107,6 +109,11 @@ public class DatabaseInsertRunHistory extends common
 			i:type="AxTableFieldInt">
 			<Name>DatabaseInsertRecordCount</Name>
 			<ExtendedDataType>DatabaseInsertRecordCount</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldReal">
+			<Name>RecordsPerSecond</Name>
+			<ExtendedDataType>RecordsPerSecond</ExtendedDataType>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

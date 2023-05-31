@@ -15,7 +15,7 @@
     <ProjectGuid>{3d6ddf89-d143-4cf0-8050-5d8a922aa611}</ProjectGuid>
     <Name>AAXDatabasePerfTest</Name>
     <RootNamespace>AAXDatabasePerfTest</RootNamespace>
-    <StartupObject>MultiInsertTester</StartupObject>
+    <StartupObject>RecordInsertListTester</StartupObject>
     <StartupType>Class</StartupType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -79,6 +79,11 @@
       <Name>DatabaseInsertRecordCount</Name>
       <Link>EDT Integers\DatabaseInsertRecordCount</Link>
     </Content>
+    <Content Include="AxEdt\RecordsPerSecond">
+      <SubType>Content</SubType>
+      <Name>RecordsPerSecond</Name>
+      <Link>EDT Reals\RecordsPerSecond</Link>
+    </Content>
     <Content Include="AxEnum\DatabaseInsertTestType">
       <SubType>Content</SubType>
       <Name>DatabaseInsertTestType</Name>
@@ -120,6 +125,7 @@
     <Folder Include="Classes\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="EDT Integers\" />
+    <Folder Include="EDT Reals\" />
     <Folder Include="Forms\" />
     <Folder Include="Menu Extensions\" />
     <Folder Include="Tables\" />

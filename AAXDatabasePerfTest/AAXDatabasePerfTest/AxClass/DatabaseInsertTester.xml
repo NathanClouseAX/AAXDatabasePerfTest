@@ -166,6 +166,37 @@ internal class DatabaseInsertTester
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>filltmpCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// empties table tmpSalesPool then populates it will some sample data
+    /// </summary>
+    public void filltmpCodeTable()
+    {
+        tmpSalesPool tmpSalesPool;
+
+        delete_from tmpSalesPool;
+
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        {
+            tmpSalesPool.SalesPoolId = int2Str(i);
+            tmpSalesPool.Name = int2Str(i);
+            tmpSalesPool.insert();
+        }
+
+        ttscommit;
+
+        
+
+
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 </AxClass>

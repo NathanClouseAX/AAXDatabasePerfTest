@@ -3,11 +3,115 @@
 	<Name>QueryInsertRecordSetTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class QueryInsertRecordSetTester
+internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
 {
-}
 
+
+}
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    //done
+    public static void main(Args _args)
+    {
+        QueryInsertRecordSetTester QueryInsertRecordSetTester = new QueryInsertRecordSetTester();
+
+        QueryInsertRecordSetTester.runCodeTable();
+
+        QueryInsertRecordSetTester.runCodeDataEntity();
+        
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    public void runCodeTable()
+    {
+        SalesPool SalesPool;
+
+        // based on https://msdax.wordpress.com/tag/queryinsert_recordset/
+        Map fieldMapping;
+        Query query;
+        QueryBuildDataSource qbds_tmpSalesPool; 
+        QueryBuildFieldList fldList_tmpSalesPool;
+
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+
+        this.wipeCodeTable();
+        this.filltmpCodeTable();         
+        
+        query = new Query();
+        qbds_tmpSalesPool = query.addDataSource(tableNum(tmpSalesPool));
+
+        fldList_tmpSalesPool = qbds_tmpSalesPool.fields();
+        fldList_tmpSalesPool.addField(fieldNum(tmpSalesPool, SalesPoolId));
+        fldList_tmpSalesPool.addField(fieldNum(tmpSalesPool, Name));
+
+
+        fieldMapping = new Map(Types::String, Types::Container);
+        fieldMapping.insert(fieldStr(SalesPool, SalesPoolId), [qbds_tmpSalesPool.uniqueId(), fieldStr(tmpSalesPool, SalesPoolId)]);
+        fieldMapping.insert(fieldStr(SalesPool, Name), [qbds_tmpSalesPool.uniqueId(), fieldStr(tmpSalesPool, Name)]);
+
+        this.startTimer();
+        ttsbegin;
+        query::insert_recordset(SalesPool, fieldMapping, query);
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::QueryInsertRecordSet, DatabaseInsertWorkloadType::CodeTable);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    public void runCodeDataEntity()
+    {
+        SalesOrderPoolEntity SalesOrderPoolEntity;
+
+        // based on https://msdax.wordpress.com/tag/queryinsert_recordset/
+        Map fieldMapping;
+        Query query;
+        QueryBuildDataSource qbds_tmpSalesPool;
+        QueryBuildFieldList fldList_tmpSalesPool;
+
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeDataEntityLoopCount);
+
+        this.wipeCodeTable();
+        this.filltmpCodeTable();
+        
+        query = new Query();
+        qbds_tmpSalesPool = query.addDataSource(tableNum(tmpSalesPool));
+
+        fldList_tmpSalesPool = qbds_tmpSalesPool.fields();
+        fldList_tmpSalesPool.addField(fieldNum(tmpSalesPool, SalesPoolId));
+        fldList_tmpSalesPool.addField(fieldNum(tmpSalesPool, Name));
+
+
+        fieldMapping = new Map(Types::String, Types::Container);
+        fieldMapping.insert(fieldStr(SalesOrderPoolEntity, PoolId), [qbds_tmpSalesPool.uniqueId(), fieldStr(tmpSalesPool, SalesPoolId)]);
+        fieldMapping.insert(fieldStr(SalesOrderPoolEntity, PoolName), [qbds_tmpSalesPool.uniqueId(), fieldStr(tmpSalesPool, Name)]);
+
+        this.startTimer();
+        ttsbegin;
+        query::insert_recordset(SalesOrderPoolEntity, fieldMapping, query);
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::QueryInsertRecordSet, DatabaseInsertWorkloadType::CodeDataEntity);
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

@@ -17,7 +17,7 @@ internal final class RecordInsertListTester extends DatabaseInsertTester
 
         RecordInsertListTester.runCodeTable();
 
-        //MultiInsertTester.runPrimaryTable();
+        RecordInsertListTester.runPrimaryTable();
 
         //MultiInsertTester.runTransactionTable();
 
@@ -66,6 +66,54 @@ internal final class RecordInsertListTester extends DatabaseInsertTester
         this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::CodeTable);
 
 
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for Table CustTable
+    /// </summary>
+    public void runPrimaryTable()
+    {
+        //setup
+        this.parmRecordCount(MultiInsertTester::primaryTableLoopCount);
+
+        RecordInsertList CustTableList;
+        CustTableList = new RecordInsertList(tableNum(CustTable));
+        CustTable CustTable;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        CustGroup CustGroup;
+
+        select * from CustGroup;
+
+        NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+
+        this.startTimer();
+        ttsbegin;
+
+        //inline on purpose
+        for(int i = 0; i <= this.parmRecordCount(); i++)
+        {
+            
+            CustTable.clear();
+            CustTable.initValue();
+            CustTable.Currency = Ledger::accountingCurrency(CompanyInfo.RecId);
+            CustTable.CustGroup = CustGroup.CustGroup;
+            CustTable.AccountNum = numberSeq.num();
+            CustTableList.add(CustTable);
+ 
+        }
+        CustTableList.insertDatabase();
+
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::PrimaryTable);
     }
 
 ]]></Source>

@@ -3,11 +3,80 @@
 	<Name>SysDAInsertObjectTester</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class SysDAInsertObjectTester
+internal final class SysDAInsertObjectTester extends DatabaseInsertTester
 {
-
 }
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        SysDAInsertObjectTester SysDAInsertObjectTester = new SysDAInsertObjectTester();
+
+        SysDAInsertObjectTester.runCodeTable();
+
+        //SysDAInsertObjectTester.runPrimaryTable();
+        //SysDAInsertObjectTester.runTransactionTable();
+        //SysDAInsertObjectTester.runCodeDataEntity();
+        //SysDAInsertObjectTester.runPrimaryDataEntity();
+        //SysDAInsertObjectTester.runTransactionalDataEntity();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable()
+    {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        SalesPool SalesPool;
+
+        this.wipeCodeTable();
+        this.filltmpCodeTable();
+
+        //tmpSalesPool
+        // based on SysDaInsertObject
+
+        var insertObject = new SysDaInsertObject(SalesPool);
+        insertObject.fields()
+            .add(fieldStr(SalesPool, SalesPoolId))
+            .add(fieldStr(SalesPool, Name));
+
+        tmpSalesPool source;
+        var qe = new SysDaQueryObject(source);
+
+        var s1 = qe.projection()
+            .Add(fieldStr(tmpSalesPool, SalesPoolId))
+            .Add(fieldStr(tmpSalesPool, Name));
+
+        insertObject.query(qe);
+
+        var insertStmt = new SysDaInsertStatement();
+        this.startTimer();
+        ttsbegin;
+        insertStmt.executeQuery(insertObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::SysDAInsertObject, DatabaseInsertWorkloadType::CodeTable);
+
+        select count(RecId) from SalesPool;
+
+        info(strFmt("%1 records created in %2", SalesPool.RecId, funcName()));
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

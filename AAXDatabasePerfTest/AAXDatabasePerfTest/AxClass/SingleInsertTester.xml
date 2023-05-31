@@ -5,19 +5,19 @@
 		<Declaration><![CDATA[
 internal final class SingleInsertTester extends DatabaseInsertTester
 {
-    /// <summary>
-    /// class to test inserting records 1 per transaction in batches
-    /// </summary>
-    /// <param name = "_args"></param>
-
-
-
 }
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
+    ///done - feature complete
+    
+    /// <param name = "_args"></param>
+    /// <summary>
+    /// class to test inserting records 1 per transaction in batches
+    /// </summary>
+    /// <param name = "_args"></param>
     public static void main(Args _args)
     {
         SingleInsertTester SingleInsertTester = new SingleInsertTester();
