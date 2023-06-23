@@ -49,6 +49,8 @@ public class DatabaseInsertRunHistory extends common
 	<SubscriberAccessLevel>
 		<Read>Allow</Read>
 	</SubscriberAccessLevel>
+	<ClusteredIndex>IdIdx</ClusteredIndex>
+	<PrimaryIndex>IdIdx</PrimaryIndex>
 	<DeleteActions />
 	<FieldGroups>
 		<AxTableFieldGroup>
@@ -117,7 +119,16 @@ public class DatabaseInsertRunHistory extends common
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
-	<Indexes />
+	<Indexes>
+		<AxTableIndex>
+			<Name>IdIdx</Name>
+			<Fields>
+				<AxTableIndexField>
+					<DataField>id</DataField>
+				</AxTableIndexField>
+			</Fields>
+		</AxTableIndex>
+	</Indexes>
 	<Mappings />
 	<Relations />
 	<StateMachines />

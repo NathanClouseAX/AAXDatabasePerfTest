@@ -19,15 +19,8 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
 
         InsertRecordSetTester.runCodeTable();
 
-        //MultiInsertTester.runPrimaryTable();
-
-        //MultiInsertTester.runTransactionTable();
-
         InsertRecordSetTester.runCodeDataEntity();
 
-        //MultiInsertTester.runPrimaryDataEntity();
-
-        //MultiInsertTester.runTransactionalDataEntity();
 
     }
 

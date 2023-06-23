@@ -16,12 +16,8 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
         SysDAInsertObjectTester SysDAInsertObjectTester = new SysDAInsertObjectTester();
 
         SysDAInsertObjectTester.runCodeTable();
+        SysDAInsertObjectTester.runCodeDataEntity();
 
-        //SysDAInsertObjectTester.runPrimaryTable();
-        //SysDAInsertObjectTester.runTransactionTable();
-        //SysDAInsertObjectTester.runCodeDataEntity();
-        //SysDAInsertObjectTester.runPrimaryDataEntity();
-        //SysDAInsertObjectTester.runTransactionalDataEntity();
 
     }
 
@@ -72,6 +68,56 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
         select count(RecId) from SalesPool;
 
         info(strFmt("%1 records created in %2", SalesPool.RecId, funcName()));
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderPoolEntity
+    /// </summary>
+    public void runCodeDataEntity()
+    {
+        //setup
+        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        SalesOrderPoolEntity SalesOrderPoolEntity;
+
+        this.wipeCodeTable();
+        this.filltmpCodeTable();
+
+        //tmpSalesPool
+        // based on SysDaInsertObject
+
+        var insertObject = new SysDaInsertObject(SalesOrderPoolEntity);
+        insertObject.fields()
+            .add(fieldStr(SalesOrderPoolEntity, PoolId))
+            .add(fieldStr(SalesOrderPoolEntity, PoolName));
+
+        tmpSalesPool source;
+        var qe = new SysDaQueryObject(source);
+
+        var s1 = qe.projection()
+            .Add(fieldStr(tmpSalesPool, SalesPoolId))
+            .Add(fieldStr(tmpSalesPool, Name));
+
+        insertObject.query(qe);
+
+        var insertStmt = new SysDaInsertStatement();
+        this.startTimer();
+        ttsbegin;
+        insertStmt.executeQuery(insertObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseInsertTestType::SysDAInsertObject, DatabaseInsertWorkloadType::CodeTable);
+
+        select count(RecId) from SalesOrderPoolEntity;
+
+        info(strFmt("%1 records created in %2", SalesOrderPoolEntity.RecId, funcName()));
 
     }
 

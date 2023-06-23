@@ -14,7 +14,7 @@ public class tmpSalesPool extends common
 	<DeveloperDocumentation>@SYS124504</DeveloperDocumentation>
 	<EntityRelationshipType>Relationship</EntityRelationshipType>
 	<Label>@SYS4926</Label>
-	<TableGroup>Group</TableGroup>
+	<TableGroup>WorksheetHeader</TableGroup>
 	<TitleField1>SalesPoolId</TitleField1>
 	<TitleField2>Name</TitleField2>
 	<AllowChangeTracking>No</AllowChangeTracking>

@@ -5,14 +5,13 @@
 		<Declaration><![CDATA[
 internal final class SingleInsertTester extends DatabaseInsertTester
 {
+   
 }
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
-    ///done - feature complete
-    
     /// <param name = "_args"></param>
     /// <summary>
     /// class to test inserting records 1 per transaction in batches
@@ -33,13 +32,6 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         SingleInsertTester.runPrimaryDataEntity();
 
         SingleInsertTester.runTransactionalDataEntity();
-
-        //new SingleInsertTester().runCodeTable();
-        //new MultiInsertTester().runCodeTable();
-        //new InsertRecordSetTester().runCodeTable();
-        //new RecordInsertListTester().runCodeTable();
-        //new RecordSortedInsertListTester().runCodeTable();
-
 
     }
 

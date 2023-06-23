@@ -15,7 +15,7 @@
     <ProjectGuid>{3d6ddf89-d143-4cf0-8050-5d8a922aa611}</ProjectGuid>
     <Name>AAXDatabasePerfTest</Name>
     <RootNamespace>AAXDatabasePerfTest</RootNamespace>
-    <StartupObject>RecordInsertListTester</StartupObject>
+    <StartupObject>SysDAInsertObjectTester</StartupObject>
     <StartupType>Class</StartupType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -74,6 +74,11 @@
       <Name>SysDAInsertObjectTester</Name>
       <Link>Classes\SysDAInsertObjectTester</Link>
     </Content>
+    <Content Include="AxDataEntityView\DatabaseInsertRunHistoryEntity">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertRunHistoryEntity</Name>
+      <Link>Data Entities\DatabaseInsertRunHistoryEntity</Link>
+    </Content>
     <Content Include="AxEdt\DatabaseInsertRecordCount">
       <SubType>Content</SubType>
       <Name>DatabaseInsertRecordCount</Name>
@@ -94,10 +99,10 @@
       <Name>DatabaseInsertWorkloadType</Name>
       <Link>Base Enums\DatabaseInsertWorkloadType</Link>
     </Content>
-    <Content Include="AxForm\DatabaseInsertTester">
+    <Content Include="AxForm\DatabaseInsertTesterForm">
       <SubType>Content</SubType>
-      <Name>DatabaseInsertTester</Name>
-      <Link>Forms\DatabaseInsertTester</Link>
+      <Name>DatabaseInsertTesterForm</Name>
+      <Link>Forms\DatabaseInsertTesterForm</Link>
     </Content>
     <Content Include="AxMenuExtension\SystemAdministration.AAXDatabasePerfTest">
       <SubType>Content</SubType>
@@ -109,10 +114,25 @@
       <Name>DatabaseInsertTester</Name>
       <Link>Display Menu Items\DatabaseInsertTester</Link>
     </Content>
+    <Content Include="AxSecurityPrivilege\DatabaseInsertRunHistoryEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertRunHistoryEntityMaintain</Name>
+      <Link>Security Privileges\DatabaseInsertRunHistoryEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DatabaseInsertRunHistoryEntityView">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertRunHistoryEntityView</Name>
+      <Link>Security Privileges\DatabaseInsertRunHistoryEntityView</Link>
+    </Content>
     <Content Include="AxTable\DatabaseInsertRunHistory">
       <SubType>Content</SubType>
       <Name>DatabaseInsertRunHistory</Name>
       <Link>Tables\DatabaseInsertRunHistory</Link>
+    </Content>
+    <Content Include="AxTable\DatabaseInsertRunHistoryStaging">
+      <SubType>Content</SubType>
+      <Name>DatabaseInsertRunHistoryStaging</Name>
+      <Link>Tables\DatabaseInsertRunHistoryStaging</Link>
     </Content>
     <Content Include="AxTable\tmpSalesPool">
       <SubType>Content</SubType>
@@ -123,11 +143,13 @@
   <ItemGroup>
     <Folder Include="Base Enums\" />
     <Folder Include="Classes\" />
+    <Folder Include="Data Entities\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="EDT Integers\" />
     <Folder Include="EDT Reals\" />
     <Folder Include="Forms\" />
     <Folder Include="Menu Extensions\" />
+    <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />

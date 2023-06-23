@@ -116,7 +116,6 @@ internal class DatabaseInsertTester
     {
         SalesPool salesPool;
 
-
         for(int i =0; i <= SingleInsertTester::codeTableLoopCount; i++)
         {
             SalesPool = SalesPool::find(int2Str(i), true);
@@ -190,8 +189,39 @@ internal class DatabaseInsertTester
 
         ttscommit;
 
-        
+    }
 
+]]></Source>
+			</Method>
+			<Method>
+				<Name>avgRecordsPerSecond</Name>
+				<Source><![CDATA[
+    public static real avgRecordsPerSecond(DatabaseInsertWorkloadType _DatabaseInsertWorkloadType, DatabaseInsertTestType _DatabaseInsertTestType)
+    {
+        DatabaseInsertRunHistory DatabaseInsertRunHistory;
+
+        select avg(RecordsPerSecond) from DatabaseInsertRunHistory
+            where DatabaseInsertRunHistory.DatabaseInsertTestType == _DatabaseInsertTestType
+               && DatabaseInsertRunHistory.DatabaseInsertWorkloadType == _DatabaseInsertWorkloadType;
+
+        return(DatabaseInsertRunHistory.RecordsPerSecond);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>recordCount</Name>
+				<Source><![CDATA[
+    public static int recordCount(DatabaseInsertWorkloadType _DatabaseInsertWorkloadType, DatabaseInsertTestType _DatabaseInsertTestType)
+    {
+        DatabaseInsertRunHistory DatabaseInsertRunHistory;
+
+        select sum(DatabaseInsertRecordCount) from DatabaseInsertRunHistory
+            where DatabaseInsertRunHistory.DatabaseInsertTestType == _DatabaseInsertTestType
+               && DatabaseInsertRunHistory.DatabaseInsertWorkloadType == _DatabaseInsertWorkloadType;
+
+        return(DatabaseInsertRunHistory.DatabaseInsertRecordCount);
 
     }
 

@@ -1,0 +1,4126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxForm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
+	<Name>DatabaseInsertTesterForm</Name>
+	<SourceCode>
+		<Methods xmlns="">
+			<Method>
+				<Name>classDeclaration</Name>
+				<Source><![CDATA[
+[Form]
+public class DatabaseInsertTesterForm extends FormRun
+{
+}
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+
+        this.refreshControlValues();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>refreshControlValues</Name>
+				<Source><![CDATA[
+    public void refreshControlValues()
+    {
+        AvgRecordPerSecondSingleInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::SingleInsert));
+
+        AvgRecordPerSecondSingleInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::SingleInsert));
+
+        AvgRecordPerSecondSingleInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::SingleInsert));
+
+        AvgRecordPerSecondSingleInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::SingleInsert));
+
+        AvgRecordPerSecondSingleInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SingleInsert));
+
+        AvgRecordPerSecondSingleInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertCodeTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SingleInsert));
+
+
+
+        AvgRecordPerSecondMultiInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::MultiInsert));
+
+        AvgRecordPerSecondMultiInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::MultiInsert));
+
+        AvgRecordPerSecondMultiInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::MultiInsert));
+
+        AvgRecordPerSecondMultiInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::MultiInsert));
+
+        AvgRecordPerSecondMultiInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::MultiInsert));
+
+        AvgRecordPerSecondMultiInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::MultiInsert));
+
+
+
+
+        AvgRecordPerSecondInsertRecordSetCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::InsertRecordsetInsert));
+
+        AvgRecordPerSecondInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::InsertRecordsetInsert));
+
+        AvgRecordPerSecondInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::InsertRecordsetInsert));
+
+        AvgRecordPerSecondInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+
+        AvgRecordPerSecondInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+
+        AvgRecordPerSecondInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>task</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name = "_p1"></param>
+    /// <returns></returns>
+    public int task(int _p1)
+    {
+        int ret;
+    
+        ret = super(_p1);
+
+        this.refreshControlValues();
+    
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+		<DataSources xmlns="" />
+		<DataControls xmlns="">
+			<Control>
+				<Name>SingleInsertCodeTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeTable();
+
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertCodeTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            MultiInsertTester MultiInsertTester = new MultiInsertTester();
+    
+            MultiInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertPrimaryTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            MultiInsertTester MultiInsertTester = new MultiInsertTester();
+            
+            MultiInsertTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertTransactionTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            MultiInsertTester MultiInsertTester = new MultiInsertTester();
+            
+            MultiInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertCodeDataEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            MultiInsertTester MultiInsertTester = new MultiInsertTester();
+            
+            MultiInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertPrimaryDataEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            MultiInsertTester MultiInsertTester = new MultiInsertTester();
+            
+            MultiInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>MultiInsertTransactionDataEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            MultiInsertTester MultiInsertTester = new MultiInsertTester();
+            
+            MultiInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>InsertRecordsetCodeTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
+
+            InsertRecordSetTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>InsertRecordsetPrimaryTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
+    
+            InsertRecordSetTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>InsertRecordsetTransactionTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>InsertRecordsetCodeEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>InsertRecordsetPrimaryEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>InsertRecordsetTransactionEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeTableButtonCopy2</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryTableButtonCopy2</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionTableButtonCopy2</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeEntityButtonCopy2</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButtonCopy2</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButtonCopy2</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeTableButtonCopy6</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryTableButtonCopy6</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionTableButtonCopy6</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeEntityButtonCopy6</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButtonCopy6</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButtonCopy6</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeTableButtonCopy5</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryTableButtonCopy5</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionTableButtonCopy5</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeEntityButtonCopy5</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButtonCopy5</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButtonCopy5</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeTableButtonCopy4</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryTableButtonCopy4</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionTableButtonCopy4</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeEntityButtonCopy4</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButtonCopy4</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButtonCopy4</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeTableButtonCopy3</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryTableButtonCopy3</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionTableButtonCopy3</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionTable();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeEntityButtonCopy3</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButtonCopy3</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runPrimaryDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButtonCopy3</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+    
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+    
+            SingleInsertTester.runTransactionalDataEntity();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+		</DataControls>
+		<Members xmlns="" />
+	</SourceCode>
+	<DataSources>
+		<AxFormDataSource xmlns="">
+			<Name>DatabaseInsertRunHistory</Name>
+			<Table>DatabaseInsertRunHistory</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DatabaseInsertRecordCount</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DatabaseInsertTestType</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DatabaseInsertWorkloadType</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>endDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>EnvironmentMode</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>id</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>milliseconds</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecordsPerSecond</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>startDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+	</DataSources>
+	<Design>
+		<Style xmlns="">TableOfContents</Style>
+		<Controls xmlns="">
+			<AxFormControl xmlns=""
+				i:type="AxFormTabControl">
+				<Name>DatabaseInsertTabs</Name>
+				<Type>Tab</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Controls>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>SingleInsert</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>SingleInsertTitle</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl1</Name>
+										<Type>StaticText</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>Single Insert</Text>
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTable</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTable</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertPrimaryTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertPrimaryTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertTransactionTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertTransactionTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntity</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertPrimaryDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertPrimaryDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntity</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertTransactionDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTransactionDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Single Insert Transaction - Done</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>MultiInsert</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>FormGroupControl1Copy1</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>StaticTextCopy1</Name>
+										<ElementPosition>1431655764</ElementPosition>
+										<FilterExpression>%1</FilterExpression>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<VerticalSpacing>-1</VerticalSpacing>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>Multi Insert</Text>
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertCodeTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertCodeTable</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertCodeTableGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertCodeTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondMultiInsertCodeTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountMultiInsertCodeTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertPrimaryTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertPrimaryTable</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertPrimaryTableGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertPrimaryTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondMultiInsertPrimaryTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountMultiInsertPrimaryTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertTransactionTableTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertTransactionTable</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertTransactionTableGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertTransactionTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondMultiInsertTransactionTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountMultiInsertTransactionTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertCodeDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertCodeDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertCodeDataEntityGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertCodeDataEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondMultiInsertCodeDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountMultiInsertCodeDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Code Data Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertPrimaryDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertPrimaryDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertPrimaryDataEntityGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertPrimaryDataEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondMultiInsertPrimaryDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountMultiInsertPrimaryDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>MultiInsertTransactionDataEntityTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>MultiInsertTransactionDataEntity</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>MultiInsertTransactionDataEntityGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>MultiInsertTransactionDataEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Multi Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondMultiInsertTransactionDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountMultiInsertTransactionDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Multi Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Multi Insert Transaction</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>InsertRecordSet</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>FormGroupControl1Copy2</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl5</Name>
+										<Type>StaticText</Type>
+										<FormControlExtension
+											i:nil="true" />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTabCopy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTableCopy1</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy7</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>InsertRecordsetCodeTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondInsertRecordSetCodeTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountInsertRecordSetCodeTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTabCopy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy2</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy3</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>InsertRecordsetPrimaryTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondInsertRecordSetPrimaryTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountInsertRecordSetPrimaryTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTabCopy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1Copy1</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>InsertRecordsetTransactionTableButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondInsertRecordSetTransactionTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountInsertRecordSetTransactionTable</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTabCopy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntityCopy1</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9Copy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>InsertRecordsetCodeEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondInsertRecordSetCodeDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountInsertRecordSetCodeDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTabCopy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntityCopy1</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2Copy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>InsertRecordsetPrimaryEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondInsertRecordSetPrimaryDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountInsertRecordSetPrimaryDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTabCopy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntityCopy1</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1Copy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>InsertRecordsetTransactionEntityButton</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondInsertRecordSetTransactionDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountInsertRecordSetTransactionDataEntity</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Insert_RecordSet</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>QueryInsertRecordSet</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>FormGroupControl1Copy6</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl2</Name>
+										<Type>StaticText</Type>
+										<FormControlExtension
+											i:nil="true" />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>FormTabControl2Copy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>FormTabPageControl1Copy5</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTabCopy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTableCopy2</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy10</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeTableButtonCopy2</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy12</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy12</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTabCopy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy3</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy4</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryTableButtonCopy2</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy1Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy1Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTabCopy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1Copy2</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy3</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionTableButtonCopy2</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy2Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy2Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTabCopy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntityCopy2</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9Copy2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButtonCopy2</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy3Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy3Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTabCopy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntityCopy2</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2Copy2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButtonCopy2</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy4Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy4Copy2</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTabCopy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntityCopy2</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1Copy2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButtonCopy2</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy5Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy5Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTabCopy6</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTableCopy6</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy14</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeTableButtonCopy6</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy16</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy16</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTabCopy6</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy7</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy8</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryTableButtonCopy6</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy1Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy1Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTabCopy6</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1Copy6</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy7</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionTableButtonCopy6</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy2Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy2Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTabCopy6</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntityCopy6</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9Copy6</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButtonCopy6</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy3Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy3Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTabCopy6</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntityCopy6</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2Copy6</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButtonCopy6</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy4Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy4Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTabCopy6</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntityCopy6</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1Copy6</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButtonCopy6</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy5Copy7</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy5Copy7</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Query Insert Record Set</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>RecordInsertList</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>FormGroupControl1Copy5</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl3</Name>
+										<Type>StaticText</Type>
+										<FormControlExtension
+											i:nil="true" />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>FormTabControl2Copy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>FormTabPageControl1Copy4</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTabCopy5</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTableCopy5</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy13</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeTableButtonCopy5</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy15</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy15</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTabCopy5</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy6</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy7</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryTableButtonCopy5</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy1Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy1Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTabCopy5</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1Copy5</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy6</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionTableButtonCopy5</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy2Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy2Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTabCopy5</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntityCopy5</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9Copy5</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButtonCopy5</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy3Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy3Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTabCopy5</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntityCopy5</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2Copy5</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButtonCopy5</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy4Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy4Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTabCopy5</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntityCopy5</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1Copy5</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButtonCopy5</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy5Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy5Copy6</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Record Insert List</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>RecordSortedInsertList</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>FormGroupControl1Copy4</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl6</Name>
+										<Type>StaticText</Type>
+										<FormControlExtension
+											i:nil="true" />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>FormTabControl2Copy2</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>FormTabPageControl1Copy3</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTabCopy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTableCopy4</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy12</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeTableButtonCopy4</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy14</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy14</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTabCopy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy5</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy6</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryTableButtonCopy4</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy1Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy1Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTabCopy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1Copy4</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy5</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionTableButtonCopy4</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy2Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy2Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTabCopy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntityCopy4</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9Copy4</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButtonCopy4</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy3Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy3Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTabCopy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntityCopy4</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2Copy4</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButtonCopy4</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy4Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy4Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTabCopy4</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntityCopy4</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1Copy4</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButtonCopy4</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy5Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy5Copy5</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Record Sorted Insert List</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>SysDAInsertObject</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>FormGroupControl1Copy3</Name>
+								<Type>Group</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl4</Name>
+										<Type>StaticText</Type>
+										<FormControlExtension
+											i:nil="true" />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>FormTabControl2Copy1</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>FormTabPageControl1Copy2</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls />
+									</AxFormControl>
+								</Controls>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeTableTabCopy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeTableCopy3</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy11</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeTableButtonCopy3</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy13</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy13</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+												</Controls>
+												<Columns>3</Columns>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryTableTabCopy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy4</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy5</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryTableButtonCopy3</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy1Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy1Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionTableTabCopy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryTableCopy1Copy3</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy4</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionTableButtonCopy3</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Table</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy2Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy2Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Table</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertCodeDataEntityTabCopy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertCodeDataEntityCopy3</Name>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy9Copy3</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertCodeEntityButtonCopy3</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Code Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy3Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy3Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Code Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertPrimaryDataEntityTabCopy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertPrimaryDataEntityCopy3</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy2Copy3</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertPrimaryEntityButtonCopy3</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Primary Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy4Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy4Copy3</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Primary Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>SingleInsertTransactionDataEntityTabCopy3</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>SingleInsertTransactionDataEntityCopy3</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl1Copy8Copy1Copy1Copy3</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>SingleInsertTransactionEntityButtonCopy3</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Single Insert - Transaction Entity</Text>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>RecordCountSingleInsertCodeTableCopy5Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Record Count</Label>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>AvgRecordPerSecondSingleInsertCodeTableCopy5Copy4</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Label>Average Record / Second</Label>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Single Insert - Transaction Entity</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>SysDA Insert Object</Caption>
+					</AxFormControl>
+				</Controls>
+				<Style>VerticalTabs</Style>
+			</AxFormControl>
+		</Controls>
+	</Design>
+	<Parts />
+</AxForm>

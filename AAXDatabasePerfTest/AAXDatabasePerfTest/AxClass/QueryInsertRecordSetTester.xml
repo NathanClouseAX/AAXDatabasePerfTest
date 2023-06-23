@@ -13,7 +13,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
-    //done
+    //done, can only insert from a select, not a good fit for primary and transactional tables
     public static void main(Args _args)
     {
         QueryInsertRecordSetTester QueryInsertRecordSetTester = new QueryInsertRecordSetTester();
