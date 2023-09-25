@@ -43,10 +43,10 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for table SalesPool
     /// </summary>
-    public void runCodeTable()
+    public void runCodeTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
         SalesPool SalesPool;
 
         this.wipeCodeTable();
@@ -65,7 +65,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
 
 
     }
@@ -78,10 +78,10 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for Table CustTable
     /// </summary>
-    public void runPrimaryTable()
+    public void runPrimaryTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::primaryTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         CustTable CustTable;
 
@@ -112,7 +112,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::PrimaryTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::PrimaryTable);
     }
 
 ]]></Source>
@@ -123,10 +123,10 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// test for Table SalesTable
     /// </summary>
-    public void runTransactionTable()
+    public void runTransactionTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::transactionTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesTable SalesTable;
         CustTable CustTable;
@@ -189,7 +189,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::TransactionTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::TransactionTable);
 
     }
 
@@ -201,10 +201,10 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderPoolEntity
     /// </summary> 
-    public void runCodeDataEntity()
+    public void runCodeDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::codeDataEntityLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesOrderPoolEntity SalesOrderPoolEntity;
 
@@ -224,7 +224,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
     }
 
 ]]></Source>
@@ -235,10 +235,10 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity CustCustomerV3Entity
     /// </summary>
-    public void runPrimaryDataEntity()
+    public void runPrimaryDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::primaryTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         CustCustomerV3Entity CustCustomerV3Entity;
 
@@ -266,7 +266,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::PrimaryDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::PrimaryDataEntity);
     }
 
 ]]></Source>
@@ -277,10 +277,10 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderHeaderV2Entity
     /// </summary>
-    public void runTransactionalDataEntity()
+    public void runTransactionalDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::transactionTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
         CustTable CustTable;
@@ -346,7 +346,18 @@ internal final class SingleInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SingleInsert, DatabaseInsertWorkloadType::TransactionDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseInsertTestType = DatabaseInsertTestType::SingleInsert;
+        super();
     }
 
 ]]></Source>

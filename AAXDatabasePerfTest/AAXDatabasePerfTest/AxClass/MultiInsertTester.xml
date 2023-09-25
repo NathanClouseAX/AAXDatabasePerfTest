@@ -38,10 +38,10 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for table SalesPool
     /// </summary>
-    public void runCodeTable()
+    public void runCodeTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesPool SalesPool;
 
@@ -76,10 +76,10 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for Table CustTable
     /// </summary>
-    public void runPrimaryTable()
+    public void runPrimaryTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(MultiInsertTester::primaryTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         CustTable CustTable;
 
@@ -123,10 +123,10 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     /// <summary>
     /// test for Table SalesTable
     /// </summary>
-    public void runTransactionTable()
+    public void runTransactionTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(MultiInsertTester::transactionTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesTable SalesTable;
         CustTable CustTable;
@@ -198,10 +198,10 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderPoolEntity
     /// </summary>
-    public void runCodeDataEntity()
+    public void runCodeDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(MultiInsertTester::codeDataEntityLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesOrderPoolEntity SalesOrderPoolEntity;
 
@@ -234,10 +234,10 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity CustCustomerV3Entity
     /// </summary>
-    public void runPrimaryDataEntity()
+    public void runPrimaryDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(MultiInsertTester::primaryTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         CustCustomerV3Entity CustCustomerV3Entity;
 
@@ -277,10 +277,10 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderHeaderV2Entity
     /// </summary>
-    public void runTransactionalDataEntity()
+    public void runTransactionalDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(MultiInsertTester::transactionTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
         CustTable CustTable;
@@ -346,6 +346,17 @@ internal final class MultiInsertTester extends DatabaseInsertTester
         this.stopTimer();
 
         this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseInsertTestType = DatabaseInsertTestType::MultiInsert;
+        super();
     }
 
 ]]></Source>

@@ -23,6 +23,7 @@ internal class DatabaseInsertTester
 
     int recordCount;
 
+    DatabaseInsertTestType DatabaseInsertTestType;
 
 
 }

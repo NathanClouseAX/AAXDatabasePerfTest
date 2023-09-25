@@ -29,10 +29,10 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
     /// <summary>
     /// Test for table SalesPool
     /// </summary>
-    public void runCodeTable()
+    public void runCodeTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
         SalesPool SalesPool;
 
         this.wipeCodeTable();
@@ -63,7 +63,7 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SysDAInsertObject, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
 
         select count(RecId) from SalesPool;
 
@@ -79,10 +79,10 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderPoolEntity
     /// </summary>
-    public void runCodeDataEntity()
+    public void runCodeDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
         SalesOrderPoolEntity SalesOrderPoolEntity;
 
         this.wipeCodeTable();
@@ -113,12 +113,23 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::SysDAInsertObject, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
 
         select count(RecId) from SalesOrderPoolEntity;
 
         info(strFmt("%1 records created in %2", SalesOrderPoolEntity.RecId, funcName()));
 
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseInsertTestType = DatabaseInsertTestType::SysDAInsertObject;
+        super();
     }
 
 ]]></Source>

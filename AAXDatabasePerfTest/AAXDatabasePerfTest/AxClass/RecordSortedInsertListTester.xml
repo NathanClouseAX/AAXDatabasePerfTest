@@ -38,10 +38,10 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
     /// <summary>
     /// Test for table SalesPool
     /// </summary>
-    public void runCodeTable()
+    public void runCodeTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         Connection con = new Connection();
 
@@ -70,7 +70,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::RecordSortedInsertListInsert, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
 
 
     }
@@ -80,10 +80,10 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 			<Method>
 				<Name>runPrimaryTable</Name>
 				<Source><![CDATA[
-    public void runPrimaryTable()
+    public void runPrimaryTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(RecordSortedInsertListTester::primaryTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         Connection con = new Connection();
 
@@ -121,7 +121,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::RecordSortedInsertListInsert, DatabaseInsertWorkloadType::PrimaryTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::PrimaryTable);
     }
 
 ]]></Source>
@@ -129,10 +129,10 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 			<Method>
 				<Name>runTransactionTable</Name>
 				<Source><![CDATA[
-    public void runTransactionTable()
+    public void runTransactionTable(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(RecordSortedInsertListTester::transactionTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         Connection con = new Connection();
 
@@ -196,7 +196,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::TransactionTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::TransactionTable);
 
     }
 
@@ -208,10 +208,10 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderPoolEntity
     /// </summary>
-    public void runCodeDataEntity()
+    public void runCodeDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(RecordInsertListTester::codeDataEntityLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         Connection con = new Connection();
 
@@ -243,7 +243,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
     }
 
 ]]></Source>
@@ -254,10 +254,10 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity CustCustomerV3Entity
     /// </summary>
-    public void runPrimaryDataEntity()
+    public void runPrimaryDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(RecordInsertListTester::primaryTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         Connection con = new Connection();
 
@@ -295,7 +295,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::PrimaryDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::PrimaryDataEntity);
     }
 
 ]]></Source>
@@ -306,10 +306,10 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
     /// <summary>
     /// Test for data entity SalesOrderHeaderV2Entity
     /// </summary>
-    public void runTransactionalDataEntity()
+    public void runTransactionalDataEntity(int _recordCount = 0)
     {
         //setup
-        this.parmRecordCount(RecordInsertListTester::transactionTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         Connection con = new Connection();
 
@@ -381,7 +381,18 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::RecordInsertListInsert, DatabaseInsertWorkloadType::TransactionDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseInsertTestType = DatabaseInsertTestType::RecordSortedInsertListInsert;
+        super();
     }
 
 ]]></Source>

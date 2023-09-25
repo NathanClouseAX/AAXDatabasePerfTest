@@ -29,7 +29,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
 			<Method>
 				<Name>runCodeTable</Name>
 				<Source><![CDATA[
-    public void runCodeTable()
+    public void runCodeTable(int _recordCount = 0)
     {
         SalesPool SalesPool;
 
@@ -40,7 +40,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
         QueryBuildFieldList fldList_tmpSalesPool;
 
         //setup
-        this.parmRecordCount(SingleInsertTester::codeTableLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         this.wipeCodeTable();
         this.filltmpCodeTable();         
@@ -63,7 +63,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::QueryInsertRecordSet, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
 
     }
 
@@ -72,7 +72,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
 			<Method>
 				<Name>runCodeDataEntity</Name>
 				<Source><![CDATA[
-    public void runCodeDataEntity()
+    public void runCodeDataEntity(int _recordCount = 0)
     {
         SalesOrderPoolEntity SalesOrderPoolEntity;
 
@@ -83,7 +83,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
         QueryBuildFieldList fldList_tmpSalesPool;
 
         //setup
-        this.parmRecordCount(SingleInsertTester::codeDataEntityLoopCount);
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
 
         this.wipeCodeTable();
         this.filltmpCodeTable();
@@ -106,8 +106,19 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::QueryInsertRecordSet, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
 
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseInsertTestType = DatabaseInsertTestType;
+        super();
     }
 
 ]]></Source>
