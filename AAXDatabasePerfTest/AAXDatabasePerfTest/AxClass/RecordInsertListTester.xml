@@ -16,17 +16,19 @@ internal final class RecordInsertListTester extends DatabaseInsertTester
     {
         RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
 
-        RecordInsertListTester.runCodeTable();
+        RecordInsertListTester.parmWriteHistory(false);
 
-        RecordInsertListTester.runPrimaryTable();
+        RecordInsertListTester.runCodeTable(1);
 
-        RecordInsertListTester.runTransactionTable();
+        RecordInsertListTester.runPrimaryTable(1);
+
+        RecordInsertListTester.runTransactionTable(1);
 
         //RecordInsertListTester.runCodeDataEntity();
 
-        RecordInsertListTester.runPrimaryDataEntity();
+        RecordInsertListTester.runPrimaryDataEntity(1);
 
-        RecordInsertListTester.runTransactionalDataEntity();
+        RecordInsertListTester.runTransactionalDataEntity(1);
 
     }
 
@@ -52,7 +54,7 @@ internal final class RecordInsertListTester extends DatabaseInsertTester
         this.startTimer();
         ttsbegin;
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
             SalesPool.SalesPoolId = int2Str(i);
             SalesPool.Name = int2Str(i);
@@ -152,7 +154,6 @@ internal final class RecordInsertListTester extends DatabaseInsertTester
         //inline on purpose
         for(int i = 0; i <= this.parmRecordCount(); i++)
         {
-            this.stopTimer();
 
             System.Random rando = new System.Random();
 

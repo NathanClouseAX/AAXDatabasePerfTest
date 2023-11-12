@@ -23,6 +23,8 @@ internal class DatabaseInsertTester
 
     int recordCount;
 
+    boolean writeHistory = true;
+
     DatabaseInsertTestType DatabaseInsertTestType;
 
 
@@ -111,23 +113,53 @@ internal class DatabaseInsertTester
 ]]></Source>
 			</Method>
 			<Method>
+				<Name>parmWriteHistory</Name>
+				<Source><![CDATA[
+    public boolean parmWriteHistory(boolean _writeHistory = writeHistory)
+    {
+        writeHistory = _writeHistory;
+        return(writeHistory);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
 				<Name>wipeCodeTable</Name>
 				<Source><![CDATA[
     public void wipeCodeTable()
     {
         SalesPool salesPool;
 
-        for(int i =0; i <= SingleInsertTester::codeTableLoopCount; i++)
-        {
-            SalesPool = SalesPool::find(int2Str(i), true);
+        ttsbegin;
+        delete_from salesPool;
+        ttscommit;
 
-            if(SalesPool)
-            {
-                ttsbegin;
-                SalesPool.delete();
-                ttscommit;
-            }
-        }
+        UserConnection                  userConnection;
+        Statement                       statement;
+        str                             sqlStatement;
+        SqlSystem                       sqlSystem;
+        SqlStatementExecutePermission   sqlPermission;
+
+        sqlSystem = new SqlSystem();
+ 
+        sqlStatement = 'delete from salespool'; //this is bad, there appears to be a bug related to RecIds
+
+        userConnection = new UserConnection();
+        statement      = userConnection.createStatement();
+
+        sqlPermission = new SqlStatementExecutePermission(sqlStatement);
+ 
+        sqlPermission.assert();
+ 
+        statement.executeUpdate(sqlStatement);
+ 
+        CodeAccessPermission::revertAssert();
+
+        ttsbegin;
+        delete_from salesPool;
+        ttscommit;
+
+
     }
 
 ]]></Source>
@@ -139,17 +171,20 @@ internal class DatabaseInsertTester
     {
         DatabaseInsertRunHistory DatabaseInsertRunHistory;
 
-        ttsbegin;
-        DatabaseInsertRunHistory.initValue();
-        DatabaseInsertRunHistory.startDateTime = this.lastStartDateTime;
-        DatabaseInsertRunHistory.endDateTime = this.lastEndDateTime;
-        DatabaseInsertRunHistory.milliseconds = this.getTimerMilliseconds();
-        DatabaseInsertRunHistory.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
-        DatabaseInsertRunHistory.DatabaseInsertTestType = _DatabaseInsertTestType;
-        DatabaseInsertRunHistory.DatabaseInsertRecordCount = this.parmRecordCount();
-        DatabaseInsertRunHistory.DatabaseInsertWorkloadType = _databaseInsertWorkloadType;
-        DatabaseInsertRunHistory.insert();
-        ttscommit;
+        if(writeHistory)
+        {
+            ttsbegin;
+            DatabaseInsertRunHistory.initValue();
+            DatabaseInsertRunHistory.startDateTime = this.lastStartDateTime;
+            DatabaseInsertRunHistory.endDateTime = this.lastEndDateTime;
+            DatabaseInsertRunHistory.milliseconds = this.getTimerMilliseconds();
+            DatabaseInsertRunHistory.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
+            DatabaseInsertRunHistory.DatabaseInsertTestType = _DatabaseInsertTestType;
+            DatabaseInsertRunHistory.DatabaseInsertRecordCount = this.parmRecordCount();
+            DatabaseInsertRunHistory.DatabaseInsertWorkloadType = _databaseInsertWorkloadType;
+            DatabaseInsertRunHistory.insert();
+            ttscommit;
+        }
     }
 
 ]]></Source>
@@ -181,8 +216,9 @@ internal class DatabaseInsertTester
         ttsbegin;
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::codeTableLoopCount; i++)
+        for(int i = 0; i < this.parmRecordCount(); i++)
         {
+            tmpSalesPool.initValue();
             tmpSalesPool.SalesPoolId = int2Str(i);
             tmpSalesPool.Name = int2Str(i);
             tmpSalesPool.insert();

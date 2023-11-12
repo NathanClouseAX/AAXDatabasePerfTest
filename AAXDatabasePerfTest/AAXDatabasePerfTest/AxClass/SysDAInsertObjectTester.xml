@@ -15,8 +15,10 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
     {
         SysDAInsertObjectTester SysDAInsertObjectTester = new SysDAInsertObjectTester();
 
-        SysDAInsertObjectTester.runCodeTable();
-        SysDAInsertObjectTester.runCodeDataEntity();
+        SysDAInsertObjectTester.parmWriteHistory(false);
+
+        SysDAInsertObjectTester.runCodeTable(1);
+        SysDAInsertObjectTester.runCodeDataEntity(1);
 
 
     }
@@ -64,10 +66,6 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
         this.stopTimer();
 
         this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
-
-        select count(RecId) from SalesPool;
-
-        info(strFmt("%1 records created in %2", SalesPool.RecId, funcName()));
 
     }
 

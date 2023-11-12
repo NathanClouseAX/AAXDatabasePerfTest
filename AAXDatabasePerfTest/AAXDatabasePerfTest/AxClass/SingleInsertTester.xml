@@ -21,17 +21,19 @@ internal final class SingleInsertTester extends DatabaseInsertTester
     {
         SingleInsertTester SingleInsertTester = new SingleInsertTester();
 
-        SingleInsertTester.runCodeTable();
+        SingleInsertTester.parmWriteHistory(false);
 
-        SingleInsertTester.runPrimaryTable();
+        SingleInsertTester.runCodeTable(1);
 
-        SingleInsertTester.runTransactionTable();
+        SingleInsertTester.runPrimaryTable(1);
 
-        SingleInsertTester.runCodeDataEntity();
+        SingleInsertTester.runTransactionTable(1);
 
-        SingleInsertTester.runPrimaryDataEntity();
+        SingleInsertTester.runCodeDataEntity(1);
 
-        SingleInsertTester.runTransactionalDataEntity();
+        SingleInsertTester.runPrimaryDataEntity(1);
+
+        SingleInsertTester.runTransactionalDataEntity(1);
 
     }
 
@@ -95,7 +97,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
         this.startTimer();
 
         //inline on purpose
-        for(int i = 0; i <= SingleInsertTester::primaryTableLoopCount; i++)
+        for(int i = 0; i <= this.parmRecordCount(); i++)
         {
             ttsbegin;
             CustTable.clear();
@@ -260,6 +262,8 @@ internal final class SingleInsertTester extends DatabaseInsertTester
             CustCustomerV3Entity.SalesCurrencyCode = Ledger::accountingCurrency(CompanyInfo.RecId);
             CustCustomerV3Entity.CustomerGroupId = CustGroup.CustGroup;
             CustCustomerV3Entity.SalesAccountNumber = numberSeq.num();
+            CustCustomerV3Entity.OrganizationName = CustCustomerV3Entity.SalesAccountNumber;
+            CustCustomerV3Entity.PartyType = "Organization";
             CustCustomerV3Entity.insert();
             ttscommit;
         }

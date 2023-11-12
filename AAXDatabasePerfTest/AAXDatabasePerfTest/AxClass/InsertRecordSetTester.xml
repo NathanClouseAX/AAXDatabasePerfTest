@@ -17,6 +17,8 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
     {
         InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
 
+        InsertRecordSetTester.parmWriteHistory(false);
+
         InsertRecordSetTester.runCodeTable(1);
 
         InsertRecordSetTester.runCodeDataEntity(1);
@@ -99,6 +101,40 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
 ]]></Source>
 			</Method>
 			<Method>
+				<Name>wipeCodeTable</Name>
+				<Source><![CDATA[
+    public void wipeCodeTable()
+    {
+        SalesPool salesPool;
+
+        UserConnection                  userConnection;
+        Statement                       statement;
+        str                             sqlStatement;
+        SqlSystem                       sqlSystem;
+        SqlStatementExecutePermission   sqlPermission;
+
+        sqlSystem = new SqlSystem();
+ 
+        sqlStatement = 'delete from salespool'; //this is bad, there appears to be a bug related to RecIds
+
+        userConnection = new UserConnection();
+        statement      = userConnection.createStatement();
+
+        sqlPermission = new SqlStatementExecutePermission(sqlStatement);
+ 
+        sqlPermission.assert();
+ 
+        statement.executeUpdate(sqlStatement);
+ 
+        CodeAccessPermission::revertAssert();
+
+        super();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
 				<Name>new</Name>
 				<Source><![CDATA[
     /// <summary>
@@ -106,7 +142,7 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
     /// </summary>
     public void new()
     {
-        DatabaseInsertTestType = DatabaseInsertTestType;
+        DatabaseInsertTestType = DatabaseInsertTestType::InsertRecordsetInsert;
         super();
     }
 

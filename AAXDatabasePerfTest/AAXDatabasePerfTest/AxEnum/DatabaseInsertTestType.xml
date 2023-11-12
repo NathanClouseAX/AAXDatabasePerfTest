@@ -5,30 +5,36 @@
 	<EnumValues>
 		<AxEnumValue>
 			<Name>SingleInsert</Name>
-			<Label>Code Table Single Insert</Label>
+			<Label>Single Insert</Label>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>MultiInsert</Name>
+			<Label>Multi Insert</Label>
 			<Value>1</Value>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>InsertRecordsetInsert</Name>
+			<Label>RecordSet Insert</Label>
 			<Value>2</Value>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>RecordInsertListInsert</Name>
+			<Label>RecordInsertList Insert</Label>
 			<Value>3</Value>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>RecordSortedInsertListInsert</Name>
+			<Label>RecordSortedInsertList Insert</Label>
 			<Value>4</Value>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>SysDAInsertObject</Name>
+			<Label>SysDA Insert</Label>
 			<Value>5</Value>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>QueryInsertRecordSet</Name>
+			<Label>QueryInsertRecordSet Insert</Label>
 			<Value>6</Value>
 		</AxEnumValue>
 	</EnumValues>

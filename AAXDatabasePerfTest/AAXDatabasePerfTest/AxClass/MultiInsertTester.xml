@@ -16,17 +16,19 @@ internal final class MultiInsertTester extends DatabaseInsertTester
     {
         MultiInsertTester MultiInsertTester = new MultiInsertTester();
 
-        MultiInsertTester.runCodeTable();
+        MultiInsertTester.parmWriteHistory(false);
 
-        MultiInsertTester.runPrimaryTable();
+        MultiInsertTester.runCodeTable(1);
 
-        MultiInsertTester.runTransactionTable();
+        MultiInsertTester.runPrimaryTable(1);
 
-        MultiInsertTester.runCodeDataEntity();
+        MultiInsertTester.runTransactionTable(1);
 
-        MultiInsertTester.runPrimaryDataEntity();
+        MultiInsertTester.runCodeDataEntity(1);
 
-        MultiInsertTester.runTransactionalDataEntity();
+        MultiInsertTester.runPrimaryDataEntity(1);
+
+        MultiInsertTester.runTransactionalDataEntity(1);
 
     }
 

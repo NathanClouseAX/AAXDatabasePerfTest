@@ -212,6 +212,38 @@ public class DatabaseInsertTesterForm extends FormRun
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void run()
+    {
+        super();
+
+        Info("this is a utility form and should not be used by anyone for any purpose");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>activate</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name = "_active"></param>
+    public void activate(boolean _active)
+    {
+        super(_active);
+
+        this.refreshControlValues();
+
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 		<DataSources xmlns="" />
 		<DataControls xmlns="">
@@ -252,18 +284,10 @@ public class DatabaseInsertTesterForm extends FormRun
         /// </summary>
         public void clicked()
         {
-            DatabaseInsertRunHistory localDatabaseInsertRunHistory;
-
-
             InsertRecordSetTester::main(new Args());
 
-
-
             super();
-
-            ttsbegin;
-            delete_from localDatabaseInsertRunHistory;
-            ttscommit;
+            
         }
 
 ]]></Source>
@@ -286,8 +310,142 @@ public class DatabaseInsertTesterForm extends FormRun
 
             SingleInsertTester SingleInsertTester = new SingleInsertTester();
 
-            SingleInsertTester.runCodeTable();
+            SingleInsertTester.runCodeTable(1);
+            SingleInsertTester.runCodeTable(10);
+            SingleInsertTester.runCodeTable(250);
+            SingleInsertTester.runCodeTable(1000);
 
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runPrimaryTable(1);
+            SingleInsertTester.runPrimaryTable(10);
+            SingleInsertTester.runPrimaryTable(250);
+            SingleInsertTester.runPrimaryTable(1000);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionTableButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runTransactionTable(1);
+            SingleInsertTester.runTransactionTable(10);
+            SingleInsertTester.runTransactionTable(250);
+            SingleInsertTester.runTransactionTable(1000);
+
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertCodeEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runCodeDataEntity(1);
+            SingleInsertTester.runCodeDataEntity(10);
+            SingleInsertTester.runCodeDataEntity(250);
+            SingleInsertTester.runCodeDataEntity(1000);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertPrimaryEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runPrimaryDataEntity(1);
+            SingleInsertTester.runPrimaryDataEntity(10);
+            SingleInsertTester.runPrimaryDataEntity(250);
+            SingleInsertTester.runPrimaryDataEntity(1000);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SingleInsertTransactionEntityButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleInsertTester SingleInsertTester = new SingleInsertTester();
+
+            SingleInsertTester.runTransactionalDataEntity(1);
+            SingleInsertTester.runTransactionalDataEntity(10);
+            SingleInsertTester.runTransactionalDataEntity(250);
+            SingleInsertTester.runTransactionalDataEntity(1000);
         }
 
 ]]></Source>
@@ -310,7 +468,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             MultiInsertTester MultiInsertTester = new MultiInsertTester();
     
-            MultiInsertTester.runCodeTable();
+            MultiInsertTester.runCodeTable(1);
+            MultiInsertTester.runCodeTable(10);
+            MultiInsertTester.runCodeTable(250);
+            MultiInsertTester.runCodeTable(1000);
+
         }
 
 ]]></Source>
@@ -333,7 +495,11 @@ public class DatabaseInsertTesterForm extends FormRun
             
             MultiInsertTester MultiInsertTester = new MultiInsertTester();
             
-            MultiInsertTester.runPrimaryTable();
+            MultiInsertTester.runPrimaryTable(1);
+            MultiInsertTester.runPrimaryTable(10);
+            MultiInsertTester.runPrimaryTable(250);
+            MultiInsertTester.runPrimaryTable(1000);
+
         }
 
 ]]></Source>
@@ -356,7 +522,10 @@ public class DatabaseInsertTesterForm extends FormRun
             
             MultiInsertTester MultiInsertTester = new MultiInsertTester();
             
-            MultiInsertTester.runTransactionTable();
+            MultiInsertTester.runTransactionTable(1);
+            MultiInsertTester.runTransactionTable(10);
+            MultiInsertTester.runTransactionTable(250);
+            MultiInsertTester.runTransactionTable(1000);
         }
 
 ]]></Source>
@@ -379,7 +548,10 @@ public class DatabaseInsertTesterForm extends FormRun
             
             MultiInsertTester MultiInsertTester = new MultiInsertTester();
             
-            MultiInsertTester.runCodeDataEntity();
+            MultiInsertTester.runCodeDataEntity(1);
+            MultiInsertTester.runCodeDataEntity(10);
+            MultiInsertTester.runCodeDataEntity(250);
+            MultiInsertTester.runCodeDataEntity(1000);
         }
 
 ]]></Source>
@@ -402,7 +574,11 @@ public class DatabaseInsertTesterForm extends FormRun
             
             MultiInsertTester MultiInsertTester = new MultiInsertTester();
             
-            MultiInsertTester.runPrimaryDataEntity();
+            MultiInsertTester.runPrimaryDataEntity(1);
+            MultiInsertTester.runPrimaryDataEntity(10);
+            MultiInsertTester.runPrimaryDataEntity(250);
+            MultiInsertTester.runPrimaryDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -425,7 +601,10 @@ public class DatabaseInsertTesterForm extends FormRun
             
             MultiInsertTester MultiInsertTester = new MultiInsertTester();
             
-            MultiInsertTester.runTransactionalDataEntity();
+            MultiInsertTester.runTransactionalDataEntity(1);
+            MultiInsertTester.runTransactionalDataEntity(10);
+            MultiInsertTester.runTransactionalDataEntity(250);
+            MultiInsertTester.runTransactionalDataEntity(1000);
         }
 
 ]]></Source>
@@ -448,7 +627,10 @@ public class DatabaseInsertTesterForm extends FormRun
 
             InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
 
-            InsertRecordSetTester.runCodeTable();
+            InsertRecordSetTester.runCodeTable(1);
+            InsertRecordSetTester.runCodeTable(10);
+            InsertRecordSetTester.runCodeTable(250);
+            InsertRecordSetTester.runCodeTable(1000);
         }
 
 ]]></Source>
@@ -472,6 +654,7 @@ public class DatabaseInsertTesterForm extends FormRun
             InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
     
             //InsertRecordSetTester.runPrimaryTable();
+            Info("not supported");
 
             
         }
@@ -521,7 +704,10 @@ public class DatabaseInsertTesterForm extends FormRun
 
             InsertRecordSetTester InsertRecordSetTester = new InsertRecordSetTester();
 
-            InsertRecordSetTester.runCodeDataEntity();
+            InsertRecordSetTester.runCodeDataEntity(1);
+            InsertRecordSetTester.runCodeDataEntity(10);
+            InsertRecordSetTester.runCodeDataEntity(250);
+            InsertRecordSetTester.runCodeDataEntity(1000);
         }
 
 ]]></Source>
@@ -592,7 +778,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             QueryInsertRecordSetTester QueryInsertRecordSetTester = new QueryInsertRecordSetTester();
 
-            QueryInsertRecordSetTester.runCodeTable();
+            QueryInsertRecordSetTester.runCodeTable(1);
+            QueryInsertRecordSetTester.runCodeTable(10);
+            QueryInsertRecordSetTester.runCodeTable(250);
+            QueryInsertRecordSetTester.runCodeTable(1000);
+
         }
 
 ]]></Source>
@@ -664,7 +854,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             QueryInsertRecordSetTester QueryInsertRecordSetTester = new QueryInsertRecordSetTester();
 
-            QueryInsertRecordSetTester.runCodeDataEntity();
+            QueryInsertRecordSetTester.runCodeDataEntity(1);
+            QueryInsertRecordSetTester.runCodeDataEntity(10);
+            QueryInsertRecordSetTester.runCodeDataEntity(250);
+            QueryInsertRecordSetTester.runCodeDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -737,7 +931,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
 
-            RecordInsertListTester.runCodeTable();
+            RecordInsertListTester.runCodeTable(1);
+            RecordInsertListTester.runCodeTable(10);
+            RecordInsertListTester.runCodeTable(250);
+            RecordInsertListTester.runCodeTable(1000);
+
         }
 
 ]]></Source>
@@ -760,7 +958,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
     
-            RecordInsertListTester.runPrimaryTable();
+            RecordInsertListTester.runPrimaryTable(1);
+            RecordInsertListTester.runPrimaryTable(10);
+            RecordInsertListTester.runPrimaryTable(250);
+            RecordInsertListTester.runPrimaryTable(1000);
+
         }
 
 ]]></Source>
@@ -783,7 +985,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
     
-            RecordInsertListTester.runTransactionTable();
+            RecordInsertListTester.runTransactionTable(1);
+            RecordInsertListTester.runTransactionTable(10);
+            RecordInsertListTester.runTransactionTable(250);
+            RecordInsertListTester.runTransactionTable(1000);
+
         }
 
 ]]></Source>
@@ -806,7 +1012,10 @@ public class DatabaseInsertTesterForm extends FormRun
 
             RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
 
-            RecordInsertListTester.runCodeDataEntity();
+            RecordInsertListTester.runCodeDataEntity(1);
+            RecordInsertListTester.runCodeDataEntity(10);
+            RecordInsertListTester.runCodeDataEntity(250);
+            RecordInsertListTester.runCodeDataEntity(1000);
         }
 
 ]]></Source>
@@ -829,7 +1038,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
     
-            RecordInsertListTester.runPrimaryDataEntity();
+            RecordInsertListTester.runPrimaryDataEntity(1);
+            RecordInsertListTester.runPrimaryDataEntity(10);
+            RecordInsertListTester.runPrimaryDataEntity(250);
+            RecordInsertListTester.runPrimaryDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -852,7 +1065,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordInsertListTester RecordInsertListTester = new RecordInsertListTester();
     
-            RecordInsertListTester.runTransactionalDataEntity();
+            RecordInsertListTester.runTransactionalDataEntity(1);
+            RecordInsertListTester.runTransactionalDataEntity(10);
+            RecordInsertListTester.runTransactionalDataEntity(250);
+            RecordInsertListTester.runTransactionalDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -875,7 +1092,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
 
-            RecordSortedInsertListTester.runCodeTable();
+            RecordSortedInsertListTester.runCodeTable(1);
+            RecordSortedInsertListTester.runCodeTable(10);
+            RecordSortedInsertListTester.runCodeTable(250);
+            RecordSortedInsertListTester.runCodeTable(1000);
+
         }
 
 ]]></Source>
@@ -898,7 +1119,12 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
     
-            RecordSortedInsertListTester.runPrimaryTable();
+            RecordSortedInsertListTester.runPrimaryTable(1);
+            RecordSortedInsertListTester.runPrimaryTable(10);
+            RecordSortedInsertListTester.runPrimaryTable(250);
+            RecordSortedInsertListTester.runPrimaryTable(1000);
+
+
         }
 
 ]]></Source>
@@ -921,7 +1147,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
     
-            RecordSortedInsertListTester.runTransactionTable();
+            RecordSortedInsertListTester.runTransactionTable(1);
+            RecordSortedInsertListTester.runTransactionTable(10);
+            RecordSortedInsertListTester.runTransactionTable(250);
+            RecordSortedInsertListTester.runTransactionTable(1000);
+
         }
 
 ]]></Source>
@@ -944,7 +1174,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
 
-            RecordSortedInsertListTester.runCodeDataEntity();
+            RecordSortedInsertListTester.runCodeDataEntity(1);
+            RecordSortedInsertListTester.runCodeDataEntity(10);
+            RecordSortedInsertListTester.runCodeDataEntity(250);
+            RecordSortedInsertListTester.runCodeDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -967,7 +1201,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
     
-            RecordSortedInsertListTester.runPrimaryDataEntity();
+            RecordSortedInsertListTester.runPrimaryDataEntity(1);
+            RecordSortedInsertListTester.runPrimaryDataEntity(10);
+            RecordSortedInsertListTester.runPrimaryDataEntity(250);
+            RecordSortedInsertListTester.runPrimaryDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -990,7 +1228,11 @@ public class DatabaseInsertTesterForm extends FormRun
     
             RecordSortedInsertListTester RecordSortedInsertListTester = new RecordSortedInsertListTester();
     
-            RecordSortedInsertListTester.runTransactionalDataEntity();
+            RecordSortedInsertListTester.runTransactionalDataEntity(1);
+            RecordSortedInsertListTester.runTransactionalDataEntity(10);
+            RecordSortedInsertListTester.runTransactionalDataEntity(250);
+            RecordSortedInsertListTester.runTransactionalDataEntity(1000);
+
         }
 
 ]]></Source>
@@ -1013,7 +1255,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             SysDAInsertObjectTester SysDAInsertObjectTester = new SysDAInsertObjectTester();
 
-            SysDAInsertObjectTester.runCodeTable();
+            SysDAInsertObjectTester.runCodeTable(1);
+            SysDAInsertObjectTester.runCodeTable(10);
+            SysDAInsertObjectTester.runCodeTable(250);
+            SysDAInsertObjectTester.runCodeTable(1000);
+
         }
 
 ]]></Source>
@@ -1086,7 +1332,11 @@ public class DatabaseInsertTesterForm extends FormRun
 
             SysDAInsertObjectTester SysDAInsertObjectTester = new SysDAInsertObjectTester();
 
-            SysDAInsertObjectTester.runCodeDataEntity();
+            SysDAInsertObjectTester.runCodeDataEntity(1);
+            SysDAInsertObjectTester.runCodeDataEntity(10);
+            SysDAInsertObjectTester.runCodeDataEntity(250);
+            SysDAInsertObjectTester.runCodeDataEntity(1000);
+
         }
 
 ]]></Source>
