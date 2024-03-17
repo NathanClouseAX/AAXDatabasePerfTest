@@ -259,7 +259,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
             ttsbegin;
             CustCustomerV3Entity.clear();
             CustCustomerV3Entity.initValue();
-            CustCustomerV3Entity.SalesCurrencyCode = Ledger::accountingCurrency(CompanyInfo.RecId);
+            CustCustomerV3Entity.SalesCurrencyCode = "USD";
             CustCustomerV3Entity.CustomerGroupId = CustGroup.CustGroup;
             CustCustomerV3Entity.SalesAccountNumber = numberSeq.num();
             CustCustomerV3Entity.OrganizationName = CustCustomerV3Entity.SalesAccountNumber;
@@ -341,6 +341,7 @@ internal final class SingleInsertTester extends DatabaseInsertTester
             numberSeq.used();
 
             SalesOrderHeaderV2Entity.SalesOrderNumber = numberSeq.num();
+            SalesOrderHeaderV2Entity.LanguageId = "en-us";
 
             SalesOrderHeaderV2Entity.insert();
 

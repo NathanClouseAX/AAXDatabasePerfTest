@@ -15,8 +15,8 @@
     <ProjectGuid>{3d6ddf89-d143-4cf0-8050-5d8a922aa611}</ProjectGuid>
     <Name>AAXDatabasePerfTest</Name>
     <RootNamespace>AAXDatabasePerfTest</RootNamespace>
-    <StartupObject>DatabaseInsertTesterForm</StartupObject>
-    <StartupType>Form</StartupType>
+    <StartupObject>DatabaseColumnSelectTester</StartupObject>
+    <StartupType>Class</StartupType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -34,6 +34,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="AxClass\DatabaseColumnSelectTester">
+      <SubType>Content</SubType>
+      <Name>DatabaseColumnSelectTester</Name>
+      <Link>Classes\DatabaseColumnSelectTester</Link>
+    </Content>
     <Content Include="AxClass\DatabaseInsertTester">
       <SubType>Content</SubType>
       <Name>DatabaseInsertTester</Name>
@@ -98,6 +103,11 @@
       <SubType>Content</SubType>
       <Name>DatabaseInsertWorkloadType</Name>
       <Link>Base Enums\DatabaseInsertWorkloadType</Link>
+    </Content>
+    <Content Include="AxEnum\DatabaseSelectTestType">
+      <SubType>Content</SubType>
+      <Name>DatabaseSelectTestType</Name>
+      <Link>Base Enums\DatabaseSelectTestType</Link>
     </Content>
     <Content Include="AxForm\DatabaseInsertTesterForm">
       <SubType>Content</SubType>

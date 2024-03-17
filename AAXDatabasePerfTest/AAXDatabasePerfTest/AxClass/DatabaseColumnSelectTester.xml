@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DatabaseColumnSelectTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class DatabaseColumnSelectTester
+{
+
+    System.Diagnostics.Stopwatch stopWatch;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        CustTable CustTable;
+
+        System.Diagnostics.Stopwatch stopWatch;
+
+        //WarmUp
+        select firstonly1 * from CustTable;
+
+        //RecId chosen from USMF contoso data to get different records so caching isn't specifically observed
+        //IIS and SQL restarted as well right before running this test.
+        stopWatch = new System.Diagnostics.Stopwatch();
+
+        stopWatch.Start();
+
+        select * from CustTable
+            where CustTable.RecId == 68719490889;
+
+        stopWatch.Stop();
+
+        Info(strfmt("select * from CustTable in %1", stopWatch.ElapsedMilliseconds));
+
+
+        stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
+        select AccountNum from CustTable
+            where CustTable.RecId == 68719490890;
+
+        stopWatch.Stop();
+
+        Info(strfmt("select 1 from CustTable in %1", stopWatch.ElapsedMilliseconds));
+
+        stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
+        select PaymTermId, LineDisc, PartyCountry, AccountNum, AccountStatement, BankAccount, Blocked, CashDisc, CashDisc, ClearingPeriod from CustTable
+            where CustTable.RecId == 68719490891;
+
+        stopWatch.Stop();
+
+        Info(strfmt("select 10 from CustTable in %1", stopWatch.ElapsedMilliseconds));
+
+        stopWatch = new System.Diagnostics.Stopwatch();
+
+        stopWatch.Start();
+
+        select firstonly * from CustTable
+            where CustTable.RecId == 68719490892;
+
+        stopWatch.Stop();
+
+        Info(strfmt("select firstonly * from CustTable in %1", stopWatch.ElapsedMilliseconds));
+
+
+        stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
+        select firstonly AccountNum from CustTable
+            where CustTable.RecId == 68719490893;
+
+        stopWatch.Stop();
+
+        Info(strfmt("select firstonly 1 from CustTable in %1", stopWatch.ElapsedMilliseconds));
+
+        stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
+        select firstonly PaymTermId, LineDisc, PartyCountry, AccountNum, AccountStatement, BankAccount, Blocked, CashDisc, CashDisc, ClearingPeriod from CustTable
+            where CustTable.RecId == 68719490894;
+
+        stopWatch.Stop();
+
+        Info(strfmt("select firstonly 10 from CustTable in %1", stopWatch.ElapsedMilliseconds));
+
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

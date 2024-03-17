@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxEnum xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DatabaseSelectTestType</Name>
+	<UseEnumValue>No</UseEnumValue>
+	<EnumValues>
+		<AxEnumValue>
+			<Name>Table</Name>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>DataEntity</Name>
+			<Value>1</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>Query</Name>
+			<Value>2</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>View</Name>
+			<Value>3</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>DirectSQL</Name>
+			<Value>4</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>TempTable</Name>
+			<Value>5</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>InMemoryTempTable</Name>
+			<Value>6</Value>
+		</AxEnumValue>
+	</EnumValues>
+	<IsExtensible>true</IsExtensible>
+</AxEnum>
