@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>MultiUpdateTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class MultiUpdateTester extends DatabaseUpdateTester
+{
+   
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    /// <param name = "_args"></param>
+    /// <summary>
+    /// class to test Updateing records 1 per transaction in batches
+    /// </summary>
+    /// <param name = "_args"></param>
+    public static void main(Args _args)
+    {
+        MultiUpdateTester MultiUpdateTester = new MultiUpdateTester();
+
+        for(int i = 1; i<=1000; i=i*10)
+        {
+
+            MultiUpdateTester.runCodeTable(i);
+
+            MultiUpdateTester.runPrimaryTable(i);
+
+            MultiUpdateTester.runTransactionTable(i);
+
+            MultiUpdateTester.runCodeDataEntity(i);
+
+            MultiUpdateTester.runPrimaryDataEntity(i);
+
+            MultiUpdateTester.runTransactionalDataEntity(i);
+        }
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable(int _recordCount = 0)
+    {
+        //setup
+        int i = 0;
+        this.parmRecordCount(_recordCount == 0 ? MultiUpdateTester::codeTableLoopCount : _recordCount);
+        SalesPool SalesPool;
+
+
+        //confirm we have at least _recordcount
+        this.fillCodeTable(_recordCount);
+
+        //inline on purpose
+        
+        this.startTimer();
+        ttsbegin;
+        while select forupdate * from SalesPool
+        {
+            SalesPool.Name = int2Str(new Random().nextInt());
+            SalesPool.Update();
+            
+
+            if(i >= this.parmRecordCount())
+            {
+                break;
+            }
+        }
+
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::CodeTable);
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for Table CustTable
+    /// </summary>
+    public void runPrimaryTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? MultiUpdateTester::codeTableLoopCount : _recordCount);
+
+        int i = 0;
+
+        CustTable CustTable;
+
+        this.fillPrimaryTable(_recordCount);
+
+        this.startTimer();
+
+        ttsbegin;
+
+        while select forupdate * from CustTable
+        {
+            CustTable.CreditMax = new Random().nextInt();
+            CustTable.update();
+
+            i++;
+
+            if(i >= _recordCount)
+            {
+                break;
+            }
+        }
+
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::PrimaryTable);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// test for Table SalesTable
+    /// </summary>
+    public void runTransactionTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? MultiUpdateTester::codeTableLoopCount : _recordCount);
+
+        SalesTable SalesTable;
+
+        int i = 0;
+
+        this.startTimer();
+
+        ttsbegin;
+        while select forupdate SalesTable
+        {
+            SalesTable.SalesName = guid2Str(newGuid());
+            SalesTable.update();
+
+            i++;
+            if(i >= _recordCount)
+            {
+                break;
+            }
+        }
+
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::TransactionTable);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderPoolEntity
+    /// </summary> 
+    public void runCodeDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? MultiUpdateTester::codeTableLoopCount : _recordCount);
+
+        SalesOrderPoolEntity SalesOrderPoolEntity;
+
+        int i = 0;
+
+        this.fillCodeTable(_recordCount);
+
+        this.startTimer();
+
+        ttsbegin;
+        while select forupdate SalesOrderPoolEntity
+        {
+            SalesOrderPoolEntity.PoolName = guid2Str(newGuid());
+            SalesOrderPoolEntity.Update();
+
+
+            i++;
+
+            if(i >= _recordCount)
+            {
+                break;
+            }
+        }
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::CodeDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity CustCustomerV3Entity
+    /// </summary>
+    public void runPrimaryDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? MultiUpdateTester::codeTableLoopCount : _recordCount);
+
+        CustCustomerV3Entity CustCustomerV3Entity;
+
+        int i = 0;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        CustGroup CustGroup;
+
+        select * from CustGroup;
+
+        NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+
+        this.startTimer();
+
+        ttsbegin;
+        while select forupdate CustCustomerV3Entity
+        {
+            CustCustomerV3Entity.CreditLimit = new Random().nextInt();
+            CustCustomerV3Entity.update();
+
+            i++;
+
+            if(i >= _recordCount)
+            {
+                break;
+            }
+        }
+
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::PrimaryDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionalDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderHeaderV2Entity
+    /// </summary>
+    public void runTransactionalDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? MultiUpdateTester::codeTableLoopCount : _recordCount);
+
+        SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
+
+        int i = 0;
+
+        this.startTimer();
+
+        ttsbegin;
+        while select forupdate SalesOrderHeaderV2Entity
+        {
+            SalesOrderHeaderV2Entity.SalesOrderName = guid2Str(newguid());
+            SalesOrderHeaderV2Entity.update();
+
+            i++;
+            if(i >= _recordCount)
+            {
+                break;
+            }
+        }
+
+        ttscommit;
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseUpdateTestType = DatabaseUpdateTestType::MultiUpdate;
+        super();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

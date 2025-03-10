@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxDataEntityView xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>DatabaseInsertRunHistoryEntity</Name>
+	<Name>DatabaseUpdateRunHistoryEntity</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-public class DatabaseInsertRunHistoryEntity extends common
+public class DatabaseUpdateRunHistoryEntity extends common
 {
 }
+
 ]]></Declaration>
 		<Methods />
 	</SourceCode>
-	<Label>Database Insert Run History</Label>
+	<Label>Database Update Run History</Label>
 	<SubscriberAccessLevel>
 		<Read>Allow</Read>
 	</SubscriberAccessLevel>
 	<DataManagementEnabled>Yes</DataManagementEnabled>
-	<DataManagementStagingTable>DatabaseInsertRunHistoryStaging</DataManagementStagingTable>
+	<DataManagementStagingTable>DatabaseUpdateRunHistoryStaging</DataManagementStagingTable>
 	<IsPublic>Yes</IsPublic>
 	<PrimaryCompanyContext>DataAreaId</PrimaryCompanyContext>
 	<PrimaryKey>EntityKey</PrimaryKey>
-	<PublicCollectionName>InsertRunHistories</PublicCollectionName>
-	<PublicEntityName>InsertRunHistory</PublicEntityName>
+	<PublicCollectionName>UpdateRunHistories</PublicCollectionName>
+	<PublicEntityName>UpdateRunHistory</PublicEntityName>
 	<SupportsSetBasedSqlOperations>Yes</SupportsSetBasedSqlOperations>
 	<DeleteActions />
 	<FieldGroups>
@@ -50,55 +51,55 @@ public class DatabaseInsertRunHistoryEntity extends common
 			i:type="AxDataEntityViewMappedField">
 			<Name>id</Name>
 			<DataField>id</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
 			<Name>startDateTime</Name>
 			<DataField>startDateTime</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
 			<Name>endDateTime</Name>
 			<DataField>endDateTime</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
 			<Name>milliseconds</Name>
 			<DataField>milliseconds</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
 			<Name>EnvironmentMode</Name>
 			<DataField>EnvironmentMode</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
-			<Name>DatabaseInsertTestType</Name>
-			<DataField>DatabaseInsertTestType</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<Name>DatabaseUpdateTestType</Name>
+			<DataField>DatabaseUpdateTestType</DataField>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
 			<Name>DatabaseWorkloadType</Name>
 			<DataField>DatabaseWorkloadType</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
-			<Name>DatabaseInsertRecordCount</Name>
-			<DataField>DatabaseInsertRecordCount</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<Name>DatabaseUpdateRecordCount</Name>
+			<DataField>DatabaseUpdateRecordCount</DataField>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 		<AxDataEntityViewField xmlns=""
 			i:type="AxDataEntityViewMappedField">
 			<Name>RecordsPerSecond</Name>
 			<DataField>RecordsPerSecond</DataField>
-			<DataSource>DatabaseInsertRunHistory</DataSource>
+			<DataSource>DatabaseUpdateRunHistory</DataSource>
 		</AxDataEntityViewField>
 	</Fields>
 	<Keys>
@@ -132,9 +133,9 @@ public class Metadata extends QueryRun
 		</SourceCode>
 		<DataSources>
 			<AxQuerySimpleRootDataSource>
-				<Name>DatabaseInsertRunHistory</Name>
+				<Name>DatabaseUpdateRunHistory</Name>
 				<DynamicFields>Yes</DynamicFields>
-				<Table>DatabaseInsertRunHistory</Table>
+				<Table>DatabaseUpdateRunHistory</Table>
 				<DataSources />
 				<DerivedDataSources />
 				<Fields />

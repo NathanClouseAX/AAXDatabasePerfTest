@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>UpdateRecordSetTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class UpdateRecordSetTester extends DatabaseUpdateTester
+{
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        UpdateRecordSetTester UpdateRecordSetTester = new UpdateRecordSetTester();
+
+        for(int i = 1; i<=1000; i=i*10)
+        {
+            UpdateRecordSetTester.runCodeTable(i);
+            UpdateRecordSetTester.runPrimaryTable(i);
+            UpdateRecordSetTester.runTransactionTable(i);
+            UpdateRecordSetTester.runCodeDataEntity(i);
+            UpdateRecordSetTester.runPrimaryDataEntity(i);
+            UpdateRecordSetTester.runTransactionalDataEntity(i);
+        }
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for Table CustTable
+    /// </summary>
+    public void runPrimaryTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? UpdateRecordSetTester::codeTableLoopCount : _recordCount);
+
+        int sentinel = 0;
+
+        CustTable CustTable;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillPrimaryTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stagePrimaryTable(_recordCount);
+
+        this.startTimer();
+
+        ttsbegin;
+        update_recordset CustTable
+            setting CreditMax = new Random().nextInt()
+            where CustTable.CreditMax == sentinel;
+
+        ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::PrimaryTable);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionTable</Name>
+				<Source><![CDATA[
+    public void runTransactionTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleUpdateTester::codeTableLoopCount : _recordCount);
+
+        str sentinel = "";
+
+        SalesTable SalesTable;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillTransactionTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stageTransactionTable(_recordCount);
+
+        int i = 0;
+
+        this.startTimer();
+
+        ttsbegin;
+        update_recordset SalesTable
+            setting SalesName = guid2Str(newGuid())
+            where SalesTable.SalesName == sentinel;
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::TransactionTable);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>stagePrimaryTable</Name>
+				<Source><![CDATA[
+    public int stagePrimaryTable(int _recordCount)
+    {
+        CustTable CustTable;
+
+        int i = 0;
+
+        int sentinel = 0;
+        while (sentinel == 0)
+        {
+            sentinel = new Random().nextInt();
+        }
+
+        update_recordset CustTable
+            setting CreditMax = 0
+            where CustTable.CreditMax == sentinel;
+
+        ttsbegin;
+        while select forupdate CustTable
+        {
+            CustTable.CreditMax = sentinel;
+            CustTable.update();
+            i++;
+
+            if(i >= _recordCount)
+                break;
+        }
+
+        ttscommit;
+
+        return sentinel;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>stageTransactionTable</Name>
+				<Source><![CDATA[
+    public str stageTransactionTable(int _recordCount)
+    {
+        SalesTable SalesTable;
+        
+        int i = 0;
+
+        str sentinel = "";
+        while (sentinel == "")
+        {
+            sentinel = guid2Str(newGuid());
+        }
+
+        ttsbegin;
+        update_recordset SalesTable
+            setting SalesName = ""
+            where SalesTable.SalesName == sentinel;
+        ttscommit;
+
+        ttsbegin;
+        while select forupdate SalesTable
+            where SalesTable.SalesStatus == SalesStatus::None
+        {
+            SalesTable.SalesName = sentinel;
+            SalesTable.update();
+
+            i++;
+
+            if(i >= _recordCount)
+                break;
+        }
+
+        ttscommit;
+
+        return sentinel;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
+
+        SalesPool SalesPool;
+        tmpSalesPool tmpSalesPool;
+
+        this.wipeCodeTable();
+        this.fillCodeTable(_recordCount);
+
+        this.startTimer();
+
+        ttsbegin;
+        update_recordset SalesPool 
+            setting Name = guid2Str(newGuid());
+
+        ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::CodeTable);
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeDataEntityLoopCount : _recordCount);
+
+        SalesOrderPoolEntity SalesOrderPoolEntity;
+        tmpSalesPool tmpSalesPool;
+
+        this.wipeCodeTable();
+        this.fillCodeTable(_recordCount);
+
+        this.startTimer();
+
+        //records already created in tmpSalesPool, just measuring time cost to get from there to target
+        ttsbegin;
+        update_recordset SalesOrderPoolEntity
+            setting PoolName = guid2Str(newguid());
+
+        ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::CodeDataEntity);
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void new()
+    {
+        DatabaseUpdateTestType = DatabaseUpdateTestType::UpdateRecordsetUpdate;
+        super();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity CustCustomerV3Entity
+    /// </summary>
+    public void runPrimaryDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? UpdateRecordSetTester::codeTableLoopCount : _recordCount);
+
+        int sentinel = 0;
+
+        CustCustomerV3Entity CustCustomerV3Entity;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillPrimaryTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stagePrimaryTable(_recordCount);
+
+        this.startTimer();
+
+        ttsbegin;
+        update_recordset CustCustomerV3Entity
+            setting CreditLimit = new Random().nextInt()
+            where CustCustomerV3Entity.CreditLimit == sentinel;
+
+        ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::PrimaryDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionalDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderHeaderV2Entity
+    /// </summary>
+    public void runTransactionalDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleUpdateTester::codeTableLoopCount : _recordCount);
+
+        str sentinel = "";
+
+        SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillTransactionTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stageTransactionTable(_recordCount);
+
+        int i = 0;
+
+        this.startTimer();
+
+        ttsbegin;
+        update_recordset SalesOrderHeaderV2Entity
+            setting SalesOrderName = guid2Str(newGuid())
+            where SalesOrderHeaderV2Entity.SalesOrderName == sentinel;
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

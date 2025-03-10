@@ -65,7 +65,7 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeTable);
 
     }
 
@@ -111,7 +111,7 @@ internal final class SysDAInsertObjectTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeDataEntity);
 
         select count(RecId) from SalesOrderPoolEntity;
 

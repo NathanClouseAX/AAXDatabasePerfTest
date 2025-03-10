@@ -33,142 +33,142 @@ public class DatabaseInsertTesterForm extends FormRun
 				<Source><![CDATA[
     public void refreshControlValues()
     {
-        AvgRecordPerSecondSingleInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::SingleInsert));
-        RecordCountSingleInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::SingleInsert));
+        AvgRecordPerSecondSingleInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::SingleInsert));
 
-        AvgRecordPerSecondSingleInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::SingleInsert));
-        RecordCountSingleInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::SingleInsert));
+        AvgRecordPerSecondSingleInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::SingleInsert));
 
-        AvgRecordPerSecondSingleInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::SingleInsert));
-        RecordCountSingleInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::SingleInsert));
+        AvgRecordPerSecondSingleInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::SingleInsert));
 
-        AvgRecordPerSecondSingleInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::SingleInsert));
-        RecordCountSingleInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::SingleInsert));
+        AvgRecordPerSecondSingleInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::SingleInsert));
 
-        AvgRecordPerSecondSingleInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SingleInsert));
-        RecordCountSingleInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SingleInsert));
+        AvgRecordPerSecondSingleInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SingleInsert));
 
-        AvgRecordPerSecondSingleInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SingleInsert));
-        RecordCountSingleInsertCodeTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SingleInsert));
-
-
-
-        AvgRecordPerSecondMultiInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::MultiInsert));
-        RecordCountMultiInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::MultiInsert));
-
-        AvgRecordPerSecondMultiInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::MultiInsert));
-        RecordCountMultiInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::MultiInsert));
-
-        AvgRecordPerSecondMultiInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::MultiInsert));
-        RecordCountMultiInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::MultiInsert));
-
-        AvgRecordPerSecondMultiInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::MultiInsert));
-        RecordCountMultiInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::MultiInsert));
-
-        AvgRecordPerSecondMultiInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::MultiInsert));
-        RecordCountMultiInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::MultiInsert));
-
-        AvgRecordPerSecondMultiInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::MultiInsert));
-        RecordCountMultiInsertTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::MultiInsert));
+        AvgRecordPerSecondSingleInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SingleInsert));
+        RecordCountSingleInsertCodeTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SingleInsert));
 
 
 
+        AvgRecordPerSecondMultiInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::MultiInsert));
 
-        AvgRecordPerSecondInsertRecordSetCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::InsertRecordsetInsert));
-        RecordCountInsertRecordSetCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        AvgRecordPerSecondMultiInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::MultiInsert));
 
-        AvgRecordPerSecondInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::InsertRecordsetInsert));
-        RecordCountInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        AvgRecordPerSecondMultiInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::MultiInsert));
 
-        AvgRecordPerSecondInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::InsertRecordsetInsert));
-        RecordCountInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        AvgRecordPerSecondMultiInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::MultiInsert));
 
-        AvgRecordPerSecondInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
-        RecordCountInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        AvgRecordPerSecondMultiInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::MultiInsert));
 
-        AvgRecordPerSecondInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
-        RecordCountInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
-
-        AvgRecordPerSecondInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
-        RecordCountInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
-
-
-        AvgRecordPerSecondQueryInsertRecordSetCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountQueryInsertRecordSetCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::QueryInsertRecordSet));
-
-        AvgRecordPerSecondQueryInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::QueryInsertRecordSet));
-        RecordCountQueryInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::QueryInsertRecordSet));
-
-        AvgRecordPerSecondQueryInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::QueryInsertRecordSet));
-        RecordCountQueryInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::QueryInsertRecordSet));
-
-        AvgRecordPerSecondQueryInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
-        RecordCountQueryInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
-
-        AvgRecordPerSecondQueryInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
-        RecordCountQueryInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
-
-        AvgRecordPerSecondQueryInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
-        RecordCountQueryInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+        AvgRecordPerSecondMultiInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::MultiInsert));
+        RecordCountMultiInsertTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::MultiInsert));
 
 
 
-        AvgRecordPerSecondRecordInsertListCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountRecordInsertListCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::RecordInsertListInsert));
 
-        AvgRecordPerSecondRecordInsertListPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountRecordInsertListPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordInsertListInsert));
+        AvgRecordPerSecondInsertRecordSetCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::InsertRecordsetInsert));
 
-        AvgRecordPerSecondRecordInsertListTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountRecordInsertListTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::RecordInsertListInsert));
+        AvgRecordPerSecondInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::InsertRecordsetInsert));
 
-        AvgRecordPerSecondRecordInsertListCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountRecordInsertListCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+        AvgRecordPerSecondInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::InsertRecordsetInsert));
 
-        AvgRecordPerSecondRecordInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountRecordInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+        AvgRecordPerSecondInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
 
-        AvgRecordPerSecondRecordInsertListTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
-        RecordCountRecordInsertListTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+        AvgRecordPerSecondInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+
+        AvgRecordPerSecondInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+        RecordCountInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::InsertRecordsetInsert));
+
+
+        AvgRecordPerSecondQueryInsertRecordSetCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountQueryInsertRecordSetCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::QueryInsertRecordSet));
+
+        AvgRecordPerSecondQueryInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::QueryInsertRecordSet));
+        RecordCountQueryInsertRecordSetPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::QueryInsertRecordSet));
+
+        AvgRecordPerSecondQueryInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::QueryInsertRecordSet));
+        RecordCountQueryInsertRecordSetTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::QueryInsertRecordSet));
+
+        AvgRecordPerSecondQueryInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+        RecordCountQueryInsertRecordSetCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+
+        AvgRecordPerSecondQueryInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+        RecordCountQueryInsertRecordSetPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+
+        AvgRecordPerSecondQueryInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+        RecordCountQueryInsertRecordSetTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::QueryInsertRecordSet));
+
+
+
+        AvgRecordPerSecondRecordInsertListCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountRecordInsertListCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::RecordInsertListInsert));
+
+        AvgRecordPerSecondRecordInsertListPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountRecordInsertListPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordInsertListInsert));
+
+        AvgRecordPerSecondRecordInsertListTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountRecordInsertListTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::RecordInsertListInsert));
+
+        AvgRecordPerSecondRecordInsertListCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountRecordInsertListCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+
+        AvgRecordPerSecondRecordInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountRecordInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+
+        AvgRecordPerSecondRecordInsertListTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
+        RecordCountRecordInsertListTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordInsertListInsert));
 
 
         
-        AvgRecordPerSecondRecordSortedInsertListCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
-        RecordCountRecordSortedInsertListCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        AvgRecordPerSecondRecordSortedInsertListCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        RecordCountRecordSortedInsertListCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
 
-        AvgRecordPerSecondRecordSortedInsertListPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
-        RecordCountRecordSortedInsertListPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        AvgRecordPerSecondRecordSortedInsertListPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        RecordCountRecordSortedInsertListPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
         
-        AvgRecordPerSecondRecordSortedInsertListTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
-        RecordCountRecordSortedInsertListTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        AvgRecordPerSecondRecordSortedInsertListTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        RecordCountRecordSortedInsertListTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::RecordSortedInsertListInsert));
 
-        AvgRecordPerSecondRecordSortedInsertListCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
-        RecordCountRecordSortedInsertListCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        AvgRecordPerSecondRecordSortedInsertListCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        RecordCountRecordSortedInsertListCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
 
-        AvgRecordPerSecondRecordSortedInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
-        RecordCountRecordSortedInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        AvgRecordPerSecondRecordSortedInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        RecordCountRecordSortedInsertListPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
 
-        AvgRecordPerSecondRecordSortedInsertListTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
-        RecordCountRecordSortedInsertListTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        AvgRecordPerSecondRecordSortedInsertListTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
+        RecordCountRecordSortedInsertListTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::RecordSortedInsertListInsert));
 
 
-        AvgRecordPerSecondSysDAInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::SysDAInsertObject));
-        RecordCountSysDAInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeTable, DatabaseInsertTestType::SysDAInsertObject));
+        AvgRecordPerSecondSysDAInsertCodeTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::SysDAInsertObject));
+        RecordCountSysDAInsertCodeTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeTable, DatabaseInsertTestType::SysDAInsertObject));
 
-        AvgRecordPerSecondSysDAInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::SysDAInsertObject));
-        RecordCountSysDAInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryTable, DatabaseInsertTestType::SysDAInsertObject));
+        AvgRecordPerSecondSysDAInsertPrimaryTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::SysDAInsertObject));
+        RecordCountSysDAInsertPrimaryTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryTable, DatabaseInsertTestType::SysDAInsertObject));
         
-        AvgRecordPerSecondSysDAInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::SysDAInsertObject));
-        RecordCountSysDAInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionTable, DatabaseInsertTestType::SysDAInsertObject));
+        AvgRecordPerSecondSysDAInsertTransactionTable.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::SysDAInsertObject));
+        RecordCountSysDAInsertTransactionTable.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionTable, DatabaseInsertTestType::SysDAInsertObject));
 
-        AvgRecordPerSecondSysDAInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::SysDAInsertObject));
-        RecordCountSysDAInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::CodeDataEntity, DatabaseInsertTestType::SysDAInsertObject));
+        AvgRecordPerSecondSysDAInsertCodeDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::SysDAInsertObject));
+        RecordCountSysDAInsertCodeDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::CodeDataEntity, DatabaseInsertTestType::SysDAInsertObject));
 
-        AvgRecordPerSecondSysDAInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SysDAInsertObject));
-        RecordCountSysDAInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SysDAInsertObject));
+        AvgRecordPerSecondSysDAInsertPrimaryDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SysDAInsertObject));
+        RecordCountSysDAInsertPrimaryDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::PrimaryDataEntity, DatabaseInsertTestType::SysDAInsertObject));
 
-        AvgRecordPerSecondSysDAInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SysDAInsertObject));
-        RecordCountSysDAInsertTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseInsertWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SysDAInsertObject));
+        AvgRecordPerSecondSysDAInsertTransactionDataEntity.realValue(DatabaseInsertTester::avgRecordsPerSecond(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SysDAInsertObject));
+        RecordCountSysDAInsertTransactionDataEntity.realValue(DatabaseInsertTester::recordCount(DatabaseWorkloadType::TransactionDataEntity, DatabaseInsertTestType::SysDAInsertObject));
 
 
     }

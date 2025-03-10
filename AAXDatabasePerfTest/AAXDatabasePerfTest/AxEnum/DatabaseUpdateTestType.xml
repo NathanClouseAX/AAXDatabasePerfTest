@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxEnum xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DatabaseUpdateTestType</Name>
+	<UseEnumValue>No</UseEnumValue>
+	<EnumValues>
+		<AxEnumValue>
+			<Name>SingleUpdate</Name>
+			<Label>Single Insert</Label>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>MultiUpdate</Name>
+			<Label>Multi Insert</Label>
+			<Value>1</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>MultiWrite</Name>
+			<Value>7</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>UpdateRecordsetUpdate</Name>
+			<Label>RecordSet Insert</Label>
+			<Value>2</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>SysDAUpdateObject</Name>
+			<Label>SysDA Insert</Label>
+			<Value>5</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>QueryUpdateRecordSet</Name>
+			<Label>QueryInsertRecordSet Insert</Label>
+			<Value>6</Value>
+		</AxEnumValue>
+	</EnumValues>
+	<IsExtensible>true</IsExtensible>
+</AxEnum>

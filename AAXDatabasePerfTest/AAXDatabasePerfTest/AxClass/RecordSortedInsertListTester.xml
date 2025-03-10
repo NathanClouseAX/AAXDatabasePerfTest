@@ -72,7 +72,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeTable);
 
 
     }
@@ -123,7 +123,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::PrimaryTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::PrimaryTable);
     }
 
 ]]></Source>
@@ -196,7 +196,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::TransactionTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::TransactionTable);
 
     }
 
@@ -243,7 +243,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeDataEntity);
     }
 
 ]]></Source>
@@ -295,7 +295,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::PrimaryDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::PrimaryDataEntity);
     }
 
 ]]></Source>
@@ -381,7 +381,7 @@ internal final class RecordSortedInsertListTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::TransactionDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::TransactionDataEntity);
     }
 
 ]]></Source>

@@ -15,7 +15,7 @@
     <ProjectGuid>{3d6ddf89-d143-4cf0-8050-5d8a922aa611}</ProjectGuid>
     <Name>AAXDatabasePerfTest</Name>
     <RootNamespace>AAXDatabasePerfTest</RootNamespace>
-    <StartupObject>DatabaseColumnSelectTester</StartupObject>
+    <StartupObject>SysDAUpdateObjectTester</StartupObject>
     <StartupType>Class</StartupType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -44,6 +44,11 @@
       <Name>DatabaseInsertTester</Name>
       <Link>Classes\DatabaseInsertTester</Link>
     </Content>
+    <Content Include="AxClass\DatabaseUpdateTester">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateTester</Name>
+      <Link>Classes\DatabaseUpdateTester</Link>
+    </Content>
     <Content Include="AxClass\InsertRecordSetTester">
       <SubType>Content</SubType>
       <Name>InsertRecordSetTester</Name>
@@ -53,6 +58,16 @@
       <SubType>Content</SubType>
       <Name>MultiInsertTester</Name>
       <Link>Classes\MultiInsertTester</Link>
+    </Content>
+    <Content Include="AxClass\MultiUpdateTester">
+      <SubType>Content</SubType>
+      <Name>MultiUpdateTester</Name>
+      <Link>Classes\MultiUpdateTester</Link>
+    </Content>
+    <Content Include="AxClass\MultiWriteTester">
+      <SubType>Content</SubType>
+      <Name>MultiWriteTester</Name>
+      <Link>Classes\MultiWriteTester</Link>
     </Content>
     <Content Include="AxClass\QueryInsertRecordSetTester">
       <SubType>Content</SubType>
@@ -74,20 +89,45 @@
       <Name>SingleInsertTester</Name>
       <Link>Classes\SingleInsertTester</Link>
     </Content>
+    <Content Include="AxClass\SingleUpdateTester">
+      <SubType>Content</SubType>
+      <Name>SingleUpdateTester</Name>
+      <Link>Classes\SingleUpdateTester</Link>
+    </Content>
     <Content Include="AxClass\SysDAInsertObjectTester">
       <SubType>Content</SubType>
       <Name>SysDAInsertObjectTester</Name>
       <Link>Classes\SysDAInsertObjectTester</Link>
+    </Content>
+    <Content Include="AxClass\SysDAUpdateObjectTester">
+      <SubType>Content</SubType>
+      <Name>SysDAUpdateObjectTester</Name>
+      <Link>Classes\SysDAUpdateObjectTester</Link>
+    </Content>
+    <Content Include="AxClass\UpdateRecordSetTester">
+      <SubType>Content</SubType>
+      <Name>UpdateRecordSetTester</Name>
+      <Link>Classes\UpdateRecordSetTester</Link>
     </Content>
     <Content Include="AxDataEntityView\DatabaseInsertRunHistoryEntity">
       <SubType>Content</SubType>
       <Name>DatabaseInsertRunHistoryEntity</Name>
       <Link>Data Entities\DatabaseInsertRunHistoryEntity</Link>
     </Content>
+    <Content Include="AxDataEntityView\DatabaseUpdateRunHistoryEntity">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateRunHistoryEntity</Name>
+      <Link>Data Entities\DatabaseUpdateRunHistoryEntity</Link>
+    </Content>
     <Content Include="AxEdt\DatabaseInsertRecordCount">
       <SubType>Content</SubType>
       <Name>DatabaseInsertRecordCount</Name>
       <Link>EDT Integers\DatabaseInsertRecordCount</Link>
+    </Content>
+    <Content Include="AxEdt\DatabaseUpdateRecordCount">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateRecordCount</Name>
+      <Link>EDT Integers\DatabaseUpdateRecordCount</Link>
     </Content>
     <Content Include="AxEdt\RecordsPerSecond">
       <SubType>Content</SubType>
@@ -99,20 +139,30 @@
       <Name>DatabaseInsertTestType</Name>
       <Link>Base Enums\DatabaseInsertTestType</Link>
     </Content>
-    <Content Include="AxEnum\DatabaseInsertWorkloadType">
-      <SubType>Content</SubType>
-      <Name>DatabaseInsertWorkloadType</Name>
-      <Link>Base Enums\DatabaseInsertWorkloadType</Link>
-    </Content>
     <Content Include="AxEnum\DatabaseSelectTestType">
       <SubType>Content</SubType>
       <Name>DatabaseSelectTestType</Name>
       <Link>Base Enums\DatabaseSelectTestType</Link>
     </Content>
+    <Content Include="AxEnum\DatabaseUpdateTestType">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateTestType</Name>
+      <Link>Base Enums\DatabaseUpdateTestType</Link>
+    </Content>
+    <Content Include="AxEnum\DatabaseWorkloadType">
+      <SubType>Content</SubType>
+      <Name>DatabaseWorkloadType</Name>
+      <Link>Base Enums\DatabaseWorkloadType</Link>
+    </Content>
     <Content Include="AxForm\DatabaseInsertTesterForm">
       <SubType>Content</SubType>
       <Name>DatabaseInsertTesterForm</Name>
       <Link>Forms\DatabaseInsertTesterForm</Link>
+    </Content>
+    <Content Include="AxForm\DatabaseUpdateTesterForm">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateTesterForm</Name>
+      <Link>Forms\DatabaseUpdateTesterForm</Link>
     </Content>
     <Content Include="AxMenuExtension\SystemAdministration.AAXDatabasePerfTest">
       <SubType>Content</SubType>
@@ -124,6 +174,11 @@
       <Name>DatabaseInsertTester</Name>
       <Link>Display Menu Items\DatabaseInsertTester</Link>
     </Content>
+    <Content Include="AxMenuItemDisplay\DatabaseUpdateTester">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateTester</Name>
+      <Link>Display Menu Items\DatabaseUpdateTester</Link>
+    </Content>
     <Content Include="AxSecurityPrivilege\DatabaseInsertRunHistoryEntityMaintain">
       <SubType>Content</SubType>
       <Name>DatabaseInsertRunHistoryEntityMaintain</Name>
@@ -134,6 +189,16 @@
       <Name>DatabaseInsertRunHistoryEntityView</Name>
       <Link>Security Privileges\DatabaseInsertRunHistoryEntityView</Link>
     </Content>
+    <Content Include="AxSecurityPrivilege\DatabaseUpdateRunHistoryEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateRunHistoryEntityMaintain</Name>
+      <Link>Security Privileges\DatabaseUpdateRunHistoryEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DatabaseUpdateRunHistoryEntityView">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateRunHistoryEntityView</Name>
+      <Link>Security Privileges\DatabaseUpdateRunHistoryEntityView</Link>
+    </Content>
     <Content Include="AxTable\DatabaseInsertRunHistory">
       <SubType>Content</SubType>
       <Name>DatabaseInsertRunHistory</Name>
@@ -143,6 +208,16 @@
       <SubType>Content</SubType>
       <Name>DatabaseInsertRunHistoryStaging</Name>
       <Link>Tables\DatabaseInsertRunHistoryStaging</Link>
+    </Content>
+    <Content Include="AxTable\DatabaseUpdateRunHistory">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateRunHistory</Name>
+      <Link>Tables\DatabaseUpdateRunHistory</Link>
+    </Content>
+    <Content Include="AxTable\DatabaseUpdateRunHistoryStaging">
+      <SubType>Content</SubType>
+      <Name>DatabaseUpdateRunHistoryStaging</Name>
+      <Link>Tables\DatabaseUpdateRunHistoryStaging</Link>
     </Content>
     <Content Include="AxTable\tmpSalesPool">
       <SubType>Content</SubType>
@@ -163,5 +238,5 @@
     <Folder Include="Tables\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
-  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
 </Project>

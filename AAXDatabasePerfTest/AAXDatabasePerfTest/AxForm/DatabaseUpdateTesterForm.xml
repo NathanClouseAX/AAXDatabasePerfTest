@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxForm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
+	<Name>DatabaseUpdateTesterForm</Name>
+	<SourceCode>
+		<Methods xmlns="">
+			<Method>
+				<Name>classDeclaration</Name>
+				<Source><![CDATA[
+[Form]
+public class DatabaseUpdateTesterForm extends FormRun
+{
+}
+]]></Source>
+			</Method>
+		</Methods>
+		<DataSources xmlns="" />
+		<DataControls xmlns="">
+			<Control>
+				<Name>Single</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SingleUpdateTester::main(null);
+
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>Multi</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            MultiUpdateTester::main(null);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>updateRecordset</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            UpdateRecordSetTester::main(null);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SysDA</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+
+            SysDAUpdateObjectTester::main(null);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+		</DataControls>
+		<Members xmlns="" />
+	</SourceCode>
+	<DataSources />
+	<Design>
+		<Controls xmlns="">
+			<AxFormControl xmlns=""
+				i:type="AxFormButtonControl">
+				<Name>Single</Name>
+				<Type>Button</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Text>Single</Text>
+			</AxFormControl>
+			<AxFormControl xmlns=""
+				i:type="AxFormButtonControl">
+				<Name>Multi</Name>
+				<Type>Button</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Text>Multi</Text>
+			</AxFormControl>
+			<AxFormControl xmlns=""
+				i:type="AxFormButtonControl">
+				<Name>updateRecordset</Name>
+				<Type>Button</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Text>Update_recoreset</Text>
+			</AxFormControl>
+			<AxFormControl xmlns=""
+				i:type="AxFormButtonControl">
+				<Name>SysDA</Name>
+				<Type>Button</Type>
+				<FormControlExtension
+					i:nil="true" />
+				<Text>SysDAUpdateObject</Text>
+			</AxFormControl>
+		</Controls>
+	</Design>
+	<Parts />
+</AxForm>

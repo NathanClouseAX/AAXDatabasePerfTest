@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxEnum xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DatabaseWorkloadType</Name>
+	<UseEnumValue>No</UseEnumValue>
+	<EnumValues>
+		<AxEnumValue>
+			<Name>CodeTable</Name>
+			<Label>Code Table</Label>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>PrimaryTable</Name>
+			<Label>Primary Table</Label>
+			<Value>1</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>TransactionTable</Name>
+			<Label>Worksheet Header Table</Label>
+			<Value>2</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>CodeDataEntity</Name>
+			<Label>Code Data Entity</Label>
+			<Value>3</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>PrimaryDataEntity</Name>
+			<Label>Primary Data Entity</Label>
+			<Value>4</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>TransactionDataEntity</Name>
+			<Label>Worksheet Header Data Entity</Label>
+			<Value>5</Value>
+		</AxEnumValue>
+	</EnumValues>
+	<IsExtensible>true</IsExtensible>
+</AxEnum>

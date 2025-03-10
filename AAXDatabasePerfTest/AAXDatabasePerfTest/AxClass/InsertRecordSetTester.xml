@@ -57,7 +57,7 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeTable);
 
 
     }
@@ -93,7 +93,7 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeDataEntity);
 
 
     }
@@ -128,7 +128,7 @@ internal final class InsertRecordSetTester extends DatabaseInsertTester
  
         CodeAccessPermission::revertAssert();
 
-        super();
+        //super();
 
     }
 

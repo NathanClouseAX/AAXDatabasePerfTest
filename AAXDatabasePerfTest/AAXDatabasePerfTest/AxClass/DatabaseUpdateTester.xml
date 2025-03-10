@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DatabaseUpdateTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal class DatabaseUpdateTester
+{
+
+    //todo make parms
+    static const public int codeTableLoopCount = 1000;
+    static const public int primaryTableLoopCount = 1000;
+    static const public int transactionTableLoopCount = 1000;
+
+    //todo make parms
+    static const public int codeDataEntityLoopCount = 1000;
+    static const public int primaryDataEntityLoopCount = 1000;
+    static const public int transactionDataEntityLoopCount = 1000;
+
+    System.Diagnostics.Stopwatch stopWatch;
+
+    utcdatetime lastStartDateTime;
+    utcdatetime lastEndDateTime;
+
+    int recordCount;
+
+    boolean writeHistory = true;
+
+    DatabaseUpdateTestType DatabaseUpdateTestType;
+
+
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>getEnvironmentMode</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Determine the environment mode. Taken from SysEnvironmentUtil. Why not use SysEnvironmentUtil? It's internal.
+    /// </summary>
+    /// <returns>Dev / TST / Prod</returns>
+    public static EnvironmentMode getEnvironmentMode()
+    {
+        SysEnvironmentModeMap environmentMap;
+
+        try
+        {
+            SysEnvironmentId lcsEnvironmentId = Microsoft.Dynamics.ApplicationPlatform.Environment.EnvironmentFactory::GetApplicationEnvironment().LCS.LCSEnvironmentId.ToString();
+
+            select firstonly environmentMap
+                where environmentMap.SysEnvironmentId == lcsEnvironmentId;
+        }
+        catch
+        {
+            return EnvironmentMode::Dev;
+        }
+
+        return (environmentMap.RecId == 0 ? EnvironmentMode::Dev : environmentMap.EnvironmentMode);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        stopWatch = new System.Diagnostics.Stopwatch();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>startTimer</Name>
+				<Source><![CDATA[
+    public void startTimer()
+    {
+        lastStartDateTime = DateTimeUtil::getSystemDateTime();
+        stopWatch.Start();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>stopTimer</Name>
+				<Source><![CDATA[
+    public void stopTimer()
+    {
+        stopWatch.Stop();
+        lastEndDateTime = DateTimeUtil::getSystemDateTime();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>resetTimer</Name>
+				<Source><![CDATA[
+    public void resetTimer()
+    {
+        stopWatch.Reset();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getTimerMilliseconds</Name>
+				<Source><![CDATA[
+    public int getTimerMilliseconds()
+    {
+        return stopWatch.ElapsedMilliseconds;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmWriteHistory</Name>
+				<Source><![CDATA[
+    public boolean parmWriteHistory(boolean _writeHistory = writeHistory)
+    {
+        writeHistory = _writeHistory;
+        return(writeHistory);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>writeRunHistory</Name>
+				<Source><![CDATA[
+    public void writeRunHistory(DatabaseUpdateTestType _DatabaseUpdateTestType, DatabaseWorkloadType _databaseWorkloadType)
+    {
+        DatabaseUpdateRunHistory DatabaseUpdateRunHistory;
+
+        if(writeHistory)
+        {
+            ttsbegin;
+            DatabaseUpdateRunHistory.initValue();
+            DatabaseUpdateRunHistory.startDateTime = this.lastStartDateTime;
+            DatabaseUpdateRunHistory.endDateTime = this.lastEndDateTime;
+            DatabaseUpdateRunHistory.milliseconds = this.getTimerMilliseconds();
+            DatabaseUpdateRunHistory.EnvironmentMode = DatabaseUpdateTester::getEnvironmentMode();
+            DatabaseUpdateRunHistory.DatabaseUpdateTestType = _DatabaseUpdateTestType;
+            DatabaseUpdateRunHistory.DatabaseUpdateRecordCount = this.parmRecordCount();
+            DatabaseUpdateRunHistory.DatabaseWorkloadType = _DatabaseWorkloadType;
+            DatabaseUpdateRunHistory.insert();
+            ttscommit;
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmRecordCount</Name>
+				<Source><![CDATA[
+    public int parmRecordCount(int _recordCount = recordCount)
+    {
+        recordCount = _recordCount;
+
+        return(recordCount);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>avgRecordsPerSecond</Name>
+				<Source><![CDATA[
+    public static real avgRecordsPerSecond(DatabaseWorkloadType _DatabaseWorkloadType, DatabaseUpdateTestType _DatabaseUpdateTestType)
+    {
+        DatabaseUpdateRunHistory DatabaseUpdateRunHistory;
+
+        select avg(RecordsPerSecond) from DatabaseUpdateRunHistory
+            where DatabaseUpdateRunHistory.DatabaseUpdateTestType == _DatabaseUpdateTestType
+               && DatabaseUpdateRunHistory.DatabaseWorkloadType == _DatabaseWorkloadType;
+
+        return(DatabaseUpdateRunHistory.RecordsPerSecond);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>recordCount</Name>
+				<Source><![CDATA[
+    public static int recordCount(DatabaseWorkloadType _DatabaseWorkloadType, DatabaseUpdateTestType _DatabaseUpdateTestType)
+    {
+        DatabaseUpdateRunHistory DatabaseUpdateRunHistory;
+
+        select sum(DatabaseUpdateRecordCount) from DatabaseUpdateRunHistory
+            where DatabaseUpdateRunHistory.DatabaseUpdateTestType == _DatabaseUpdateTestType
+               && DatabaseUpdateRunHistory.DatabaseWorkloadType == _DatabaseWorkloadType;
+
+        return(DatabaseUpdateRunHistory.DatabaseUpdateRecordCount);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>fillCodeTable</Name>
+				<Source><![CDATA[
+    public void fillCodeTable(int _recordCount)
+    {
+        SalesPool SalesPool;
+
+        select count(RecId) from SalesPool;
+
+        if(SalesPool.RecId <= _recordCount)
+        {
+            ttsbegin;
+            for(int i = 0; i <= this.parmRecordCount(); i++)
+            {
+                SalesPool.SalesPoolId = int2Str(i);
+                SalesPool.Name = int2Str(i);
+                SalesPool.insert();
+            }
+            ttscommit;
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>fillPrimaryTable</Name>
+				<Source><![CDATA[
+    public void fillPrimaryTable(int _recordCount)
+    {
+        CustTable CustTable;
+
+        select count(RecId) from CustTable;
+
+        CustCustomerV3Entity CustCustomerV3Entity;
+
+        if(CustTable.RecId <= _recordCount)
+        {
+            CompanyInfo CompanyInfo = CompanyInfo::find();
+            CustGroup CustGroup;
+
+            select * from CustGroup;
+
+            NumberSeq numberSeq = NumberSeq::newGetNum(CustParameters::numRefCustAccount());
+            ttsbegin;
+            for(int i = 0; i <= _recordCount; i++)
+            {
+                CustCustomerV3Entity.clear();
+                CustCustomerV3Entity.initValue();
+                CustCustomerV3Entity.SalesCurrencyCode = Ledger::accountingCurrency(CompanyInfo.RecId);
+                CustCustomerV3Entity.CustomerGroupId = CustGroup.CustGroup;
+                CustCustomerV3Entity.SalesAccountNumber = numberSeq.num();
+                CustCustomerV3Entity.OrganizationName = CustCustomerV3Entity.SalesAccountNumber;
+                CustCustomerV3Entity.PartyType = "Organization";
+                CustCustomerV3Entity.insert();
+            }
+            ttscommit;
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>fillTransactionTable</Name>
+				<Source><![CDATA[
+    public void fillTransactionTable(int _recordCount)
+    {
+        SalesTable SalesTable;
+        CustTable CustTable;
+
+        RecId custTableMaxRecId;
+        RecId CustTableMinRecId;
+
+        CompanyInfo CompanyInfo = CompanyInfo::find();
+        RandomGenerate RandomGenerate = RandomGenerate::construct();
+
+        select maxof(RecId) from CustTable;
+        custTableMaxRecId = CustTable.RecId - 1;
+
+        select minof(RecId) from CustTable;
+        CustTableMinRecId = CustTable.RecId - 1;
+
+        numberSeq numberSeq;
+
+        System.Random rando = new System.Random();
+
+        ttsbegin;
+        for(int i; i <= _recordCount; i++)
+        {
+            int64 randomRecId = (rando.NextDouble() * int64Max() ) / 922337203685477581;
+
+            select firstonly1 * from CustTable
+                where CustTable.RecId >= randomRecId;
+
+            if(!CustTable)
+            {
+                select firstonly1 * from CustTable;
+            }
+
+            SalesTable.clear();
+            SalesTable.initValue();
+
+            SalesTable.CustAccount = CustTable.AccountNum;
+            SalesTable.initFromCustTable();
+
+            numberSeq = NumberSeq::newGetNum(SalesParameters::numRefSalesId());
+            numberSeq.used();
+  
+            salesTable.SalesId = numberSeq.num();
+
+            salesTable.insert();
+        }
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>wipeCodeTable</Name>
+				<Source><![CDATA[
+    public void wipeCodeTable()
+    {
+        SalesPool salesPool;
+
+        ttsbegin;
+        delete_from salesPool;
+        ttscommit;
+
+        UserConnection                  userConnection;
+        Statement                       statement;
+        str                             sqlStatement;
+        SqlSystem                       sqlSystem;
+        SqlStatementExecutePermission   sqlPermission;
+
+        sqlSystem = new SqlSystem();
+ 
+        sqlStatement = 'delete from salespool'; //this is bad, there appears to be a bug related to RecIds
+
+        userConnection = new UserConnection();
+        statement      = userConnection.createStatement();
+
+        sqlPermission = new SqlStatementExecutePermission(sqlStatement);
+ 
+        sqlPermission.assert();
+ 
+        //statement.executeUpdate(sqlStatement);
+ 
+        CodeAccessPermission::revertAssert();
+
+        ttsbegin;
+        delete_from salesPool;
+        ttscommit;
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>stagePrimaryTable</Name>
+				<Source><![CDATA[
+    public int stagePrimaryTable(int _recordCount)
+    {
+        CustTable CustTable;
+
+        int i = 0;
+
+        int sentinel = 0;
+        while (sentinel == 0)
+        {
+            sentinel = new Random().nextInt();
+        }
+
+        update_recordset CustTable
+            setting CreditMax = 0
+            where CustTable.CreditMax == sentinel;
+
+        ttsbegin;
+        while select forupdate CustTable
+        {
+            CustTable.CreditMax = sentinel;
+            CustTable.update();
+            i++;
+
+            if(i >= _recordCount)
+                break;
+        }
+
+        ttscommit;
+
+        return sentinel;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>stageTransactionTable</Name>
+				<Source><![CDATA[
+    public str stageTransactionTable(int _recordCount)
+    {
+        SalesTable SalesTable;
+        
+        int i = 0;
+
+        str sentinel = "";
+        while (sentinel == "")
+        {
+            sentinel = guid2Str(newGuid());
+        }
+
+        ttsbegin;
+        update_recordset SalesTable
+            setting SalesName = ""
+            where SalesTable.SalesName == sentinel;
+        ttscommit;
+
+        ttsbegin;
+        while select forupdate SalesTable
+            where SalesTable.SalesStatus == SalesStatus::None
+        {
+            SalesTable.SalesName = sentinel;
+            SalesTable.update();
+
+            i++;
+
+            if(i >= _recordCount)
+                break;
+        }
+
+        ttscommit;
+
+        return sentinel;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

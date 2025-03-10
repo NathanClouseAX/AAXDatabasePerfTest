@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SysDAUpdateObjectTester</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class SysDAUpdateObjectTester extends DatabaseUpdateTester
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        SysDAUpdateObjectTester SysDAUpdateObjectTester = new SysDAUpdateObjectTester();
+
+        for(int i = 1; i<=1000; i=i*10)
+        {
+            SysDAUpdateObjectTester.runCodeTable(i);
+            SysDAUpdateObjectTester.runCodeDataEntity(i);
+
+            SysDAUpdateObjectTester.runPrimaryTable(i);
+            SysDAUpdateObjectTester.runPrimaryDataEntity(i);
+
+            SysDAUpdateObjectTester.runTransactionTable(i);
+            SysDAUpdateObjectTester.runTransactionalDataEntity(i);
+        }
+
+
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeTable</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for table SalesPool
+    /// </summary>
+    public void runCodeTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleInsertTester::codeTableLoopCount : _recordCount);
+
+        SalesPool SalesPool;
+        tmpSalesPool tmpSalesPool;
+
+        this.wipeCodeTable();
+        this.fillCodeTable(_recordCount);
+
+        //tmpSalesPool
+        // based on SysDaInsertObject
+
+        var updateObject = new SysDaUpdateObject(SalesPool);
+
+        updateObject.settingClause()
+            .add(fieldStr(SalesPool, Name), new SysDaValueExpression(guid2Str(newGuid())));
+
+
+        var updateStmt = new SysDaUpdateStatement();
+        this.startTimer();
+        ttsbegin;
+        updateStmt.update(updateObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::CodeTable);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryTable</Name>
+				<Source><![CDATA[
+    public void runPrimaryTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? UpdateRecordSetTester::codeTableLoopCount : _recordCount);
+
+        int sentinel = 0;
+
+        CustTable CustTable;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillPrimaryTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stagePrimaryTable(_recordCount);
+
+        this.startTimer();
+
+        var updateObject = new SysDaUpdateObject(CustTable);
+
+        updateObject.settingClause()
+            .add(fieldStr(CustTable, CreditMax), new SysDaValueExpression(new Random().nextInt()));
+
+        updateObject.whereClause(
+            new SysDaEqualsExpression(
+                new SysDaFieldExpression(CustTable, fieldStr(CustTable, CreditMax)), 
+                new SysDaValueExpression(sentinel)
+                )
+            );
+
+        var updateStmt = new SysDaUpdateStatement();
+        this.startTimer();
+        ttsbegin;
+        updateStmt.update(updateObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::PrimaryTable);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionTable</Name>
+				<Source><![CDATA[
+    public void runTransactionTable(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleUpdateTester::codeTableLoopCount : _recordCount);
+
+        str sentinel = "";
+
+        SalesTable SalesTable;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillTransactionTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stageTransactionTable(_recordCount);
+
+        int i = 0;
+
+        this.startTimer();
+
+        var updateObject = new SysDaUpdateObject(SalesTable);
+
+        updateObject.settingClause()
+            .add(fieldStr(SalesTable, SalesName), new SysDaValueExpression(new Random().nextInt()));
+
+        updateObject.whereClause(
+            new SysDaEqualsExpression(
+                new SysDaFieldExpression(SalesTable, fieldStr(SalesTable, SalesName)),
+                new SysDaValueExpression(sentinel)
+            )
+            );
+
+        var updateStmt = new SysDaUpdateStatement();
+        this.startTimer();
+        ttsbegin;
+        updateStmt.update(updateObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::TransactionTable);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runCodeDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderPoolEntity
+    /// </summary>
+    public void runCodeDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleUpdateTester::codeTableLoopCount : _recordCount);
+        SalesOrderPoolEntity SalesOrderPoolEntity;
+
+        this.wipeCodeTable();
+        this.fillCodeTable(_recordCount);
+
+        var updateObject = new SysDaUpdateObject(SalesOrderPoolEntity);
+
+        updateObject.settingClause()
+            .add(fieldStr(SalesOrderPoolEntity, PoolName), new SysDaValueExpression(guid2Str(newGuid())));
+
+
+        var updateStmt = new SysDaUpdateStatement();
+        this.startTimer();
+        ttsbegin;
+        updateStmt.update(updateObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::CodeDataEntity);
+
+        select count(RecId) from SalesOrderPoolEntity;
+
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runPrimaryDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity CustCustomerV3Entity
+    /// </summary>
+    public void runPrimaryDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? UpdateRecordSetTester::codeTableLoopCount : _recordCount);
+
+        int sentinel = 0;
+
+        CustCustomerV3Entity CustCustomerV3Entity;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillPrimaryTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stagePrimaryTable(_recordCount);
+
+        this.startTimer();
+
+        var updateObject = new SysDaUpdateObject(CustCustomerV3Entity);
+
+        updateObject.settingClause()
+            .add(fieldStr(CustCustomerV3Entity, CreditLimit), new SysDaValueExpression(new Random().nextInt()));
+
+        updateObject.whereClause(
+            new SysDaEqualsExpression(
+                new SysDaFieldExpression(CustCustomerV3Entity, fieldStr(CustCustomerV3Entity, CreditLimit)),
+                new SysDaValueExpression(sentinel)
+            )
+            );
+
+        var updateStmt = new SysDaUpdateStatement();
+        this.startTimer();
+        ttsbegin;
+        updateStmt.update(updateObject);
+        ttscommit;
+        
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::PrimaryDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>runTransactionalDataEntity</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Test for data entity SalesOrderHeaderV2Entity
+    /// </summary>
+    public void runTransactionalDataEntity(int _recordCount = 0)
+    {
+        //setup
+        this.parmRecordCount(_recordCount == 0 ? SingleUpdateTester::codeTableLoopCount : _recordCount);
+
+        str sentinel = "";
+
+        SalesOrderHeaderV2Entity SalesOrderHeaderV2Entity;
+
+        //make sure we have _recordCount things to update at a minimum
+        this.fillTransactionTable(_recordCount);
+
+        //stage _recordCount into a state so we only update a set amount
+        sentinel = this.stageTransactionTable(_recordCount);
+
+        int i = 0;
+
+        this.startTimer();
+
+        var updateObject = new SysDaUpdateObject(SalesOrderHeaderV2Entity);
+
+        updateObject.settingClause()
+            .add(fieldStr(SalesOrderHeaderV2Entity, SalesOrderName), new SysDaValueExpression(new Random().nextInt()));
+
+        updateObject.whereClause(
+            new SysDaEqualsExpression(
+                new SysDaFieldExpression(SalesOrderHeaderV2Entity, fieldStr(SalesOrderHeaderV2Entity, SalesOrderName)),
+                new SysDaValueExpression(sentinel)
+            )
+            );
+
+        var updateStmt = new SysDaUpdateStatement();
+        this.startTimer();
+        ttsbegin;
+        updateStmt.update(updateObject);
+        ttscommit;
+
+        this.stopTimer();
+
+        this.writeRunHistory(DatabaseUpdateTestType, DatabaseWorkloadType::TransactionDataEntity);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        DatabaseUpdateTestType = DatabaseUpdateTestType::SysDAUpdateObject;
+        super();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

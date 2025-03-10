@@ -124,50 +124,9 @@ internal class DatabaseInsertTester
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>wipeCodeTable</Name>
-				<Source><![CDATA[
-    public void wipeCodeTable()
-    {
-        SalesPool salesPool;
-
-        ttsbegin;
-        delete_from salesPool;
-        ttscommit;
-
-        UserConnection                  userConnection;
-        Statement                       statement;
-        str                             sqlStatement;
-        SqlSystem                       sqlSystem;
-        SqlStatementExecutePermission   sqlPermission;
-
-        sqlSystem = new SqlSystem();
- 
-        sqlStatement = 'delete from salespool'; //this is bad, there appears to be a bug related to RecIds
-
-        userConnection = new UserConnection();
-        statement      = userConnection.createStatement();
-
-        sqlPermission = new SqlStatementExecutePermission(sqlStatement);
- 
-        sqlPermission.assert();
- 
-        statement.executeUpdate(sqlStatement);
- 
-        CodeAccessPermission::revertAssert();
-
-        ttsbegin;
-        delete_from salesPool;
-        ttscommit;
-
-
-    }
-
-]]></Source>
-			</Method>
-			<Method>
 				<Name>writeRunHistory</Name>
 				<Source><![CDATA[
-    public void writeRunHistory(DatabaseInsertTestType _DatabaseInsertTestType, DatabaseInsertWorkloadType _databaseInsertWorkloadType)
+    public void writeRunHistory(DatabaseInsertTestType _DatabaseInsertTestType, DatabaseWorkloadType _DatabaseWorkloadType)
     {
         DatabaseInsertRunHistory DatabaseInsertRunHistory;
 
@@ -181,7 +140,7 @@ internal class DatabaseInsertTester
             DatabaseInsertRunHistory.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
             DatabaseInsertRunHistory.DatabaseInsertTestType = _DatabaseInsertTestType;
             DatabaseInsertRunHistory.DatabaseInsertRecordCount = this.parmRecordCount();
-            DatabaseInsertRunHistory.DatabaseInsertWorkloadType = _databaseInsertWorkloadType;
+            DatabaseInsertRunHistory.DatabaseWorkloadType = _DatabaseWorkloadType;
             DatabaseInsertRunHistory.insert();
             ttscommit;
         }
@@ -233,13 +192,13 @@ internal class DatabaseInsertTester
 			<Method>
 				<Name>avgRecordsPerSecond</Name>
 				<Source><![CDATA[
-    public static real avgRecordsPerSecond(DatabaseInsertWorkloadType _DatabaseInsertWorkloadType, DatabaseInsertTestType _DatabaseInsertTestType)
+    public static real avgRecordsPerSecond(DatabaseWorkloadType _DatabaseWorkloadType, DatabaseInsertTestType _DatabaseInsertTestType)
     {
         DatabaseInsertRunHistory DatabaseInsertRunHistory;
 
         select avg(RecordsPerSecond) from DatabaseInsertRunHistory
             where DatabaseInsertRunHistory.DatabaseInsertTestType == _DatabaseInsertTestType
-               && DatabaseInsertRunHistory.DatabaseInsertWorkloadType == _DatabaseInsertWorkloadType;
+               && DatabaseInsertRunHistory.DatabaseWorkloadType == _DatabaseWorkloadType;
 
         return(DatabaseInsertRunHistory.RecordsPerSecond);
 
@@ -250,15 +209,47 @@ internal class DatabaseInsertTester
 			<Method>
 				<Name>recordCount</Name>
 				<Source><![CDATA[
-    public static int recordCount(DatabaseInsertWorkloadType _DatabaseInsertWorkloadType, DatabaseInsertTestType _DatabaseInsertTestType)
+    public static int recordCount(DatabaseWorkloadType _DatabaseWorkloadType, DatabaseInsertTestType _DatabaseInsertTestType)
     {
         DatabaseInsertRunHistory DatabaseInsertRunHistory;
 
         select sum(DatabaseInsertRecordCount) from DatabaseInsertRunHistory
             where DatabaseInsertRunHistory.DatabaseInsertTestType == _DatabaseInsertTestType
-               && DatabaseInsertRunHistory.DatabaseInsertWorkloadType == _DatabaseInsertWorkloadType;
+               && DatabaseInsertRunHistory.DatabaseWorkloadType == _DatabaseWorkloadType;
 
         return(DatabaseInsertRunHistory.DatabaseInsertRecordCount);
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>wipeCodeTable</Name>
+				<Source><![CDATA[
+    public void wipeCodeTable()
+    {
+        SalesPool salesPool;
+
+        UserConnection                  userConnection;
+        Statement                       statement;
+        str                             sqlStatement;
+        SqlSystem                       sqlSystem;
+        SqlStatementExecutePermission   sqlPermission;
+
+        sqlSystem = new SqlSystem();
+ 
+        sqlStatement = 'delete from salespool'; //this is bad, there appears to be a bug related to RecIds
+
+        userConnection = new UserConnection();
+        statement      = userConnection.createStatement();
+
+        sqlPermission = new SqlStatementExecutePermission(sqlStatement);
+ 
+        sqlPermission.assert();
+ 
+        statement.executeUpdate(sqlStatement);
+ 
+        CodeAccessPermission::revertAssert();
 
     }
 

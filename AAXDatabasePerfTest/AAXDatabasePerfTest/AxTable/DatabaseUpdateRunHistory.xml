@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>DatabaseInsertRunHistory</Name>
+	<Name>DatabaseUpdateRunHistory</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-public class DatabaseInsertRunHistory extends common
+public class DatabaseUpdateRunHistory extends common
 {
 
 }
@@ -14,11 +14,11 @@ public class DatabaseInsertRunHistory extends common
 				<Source><![CDATA[
     public int nextId()
     {
-        DatabaseInsertRunHistory DatabaseInsertRunHistory;
+        DatabaseUpdateRunHistory DatabaseUpdateRunHistory;
 
-        select maxof(id) from DatabaseInsertRunHistory;
+        select maxof(id) from DatabaseUpdateRunHistory;
 
-        return DatabaseInsertRunHistory.id + 1;
+        return DatabaseUpdateRunHistory.id + 1;
     }
 
 ]]></Source>
@@ -34,7 +34,7 @@ public class DatabaseInsertRunHistory extends common
             this.id = this.nextId();
         }
 
-        this.RecordsPerSecond = (this.DatabaseInsertRecordCount / this.milliseconds) * 1000;
+        this.RecordsPerSecond = (this.DatabaseUpdateRecordCount / this.milliseconds) * 1000;
 
         this.EnvironmentMode = DatabaseInsertTester::getEnvironmentMode();
 
@@ -49,6 +49,8 @@ public class DatabaseInsertRunHistory extends common
 	<SubscriberAccessLevel>
 		<Read>Allow</Read>
 	</SubscriberAccessLevel>
+	<TitleField1>id</TitleField1>
+	<TitleField2>DatabaseWorkloadType</TitleField2>
 	<ClusteredIndex>IdIdx</ClusteredIndex>
 	<PrimaryIndex>IdIdx</PrimaryIndex>
 	<DeleteActions />
@@ -99,8 +101,8 @@ public class DatabaseInsertRunHistory extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>DatabaseInsertTestType</Name>
-			<EnumType>DatabaseInsertTestType</EnumType>
+			<Name>DatabaseUpdateTestType</Name>
+			<EnumType>DatabaseUpdateTestType</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
@@ -109,8 +111,9 @@ public class DatabaseInsertRunHistory extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
-			<Name>DatabaseInsertRecordCount</Name>
-			<ExtendedDataType>DatabaseInsertRecordCount</ExtendedDataType>
+			<Name>DatabaseUpdateRecordCount</Name>
+			<ExtendedDataType>DatabaseUpdateRecordCount</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldReal">

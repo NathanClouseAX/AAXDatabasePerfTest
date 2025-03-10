@@ -65,7 +65,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeTable);
 
     }
 
@@ -108,7 +108,7 @@ internal final class QueryInsertRecordSetTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType, DatabaseWorkloadType::CodeDataEntity);
 
     }
 

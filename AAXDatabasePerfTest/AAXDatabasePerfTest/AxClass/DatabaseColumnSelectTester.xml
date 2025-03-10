@@ -20,6 +20,16 @@ internal final class DatabaseColumnSelectTester
 
         System.Diagnostics.Stopwatch stopWatch;
 
+        xSession::removeAOC();
+        SysTreeNode::refreshAll();
+        SysFlushDictionary::main(null);
+        SysFlushAOD::main(null);
+        SysFlushData::main(null);
+        SysFlushReportServer::main(null);
+        SysFlushSystemSequence::main(null);
+        xSession::updateAOC();
+
+
         //WarmUp
         select firstonly1 * from CustTable;
 
@@ -50,7 +60,7 @@ internal final class DatabaseColumnSelectTester
         stopWatch = new System.Diagnostics.Stopwatch();
         stopWatch.Start();
 
-        select PaymTermId, LineDisc, PartyCountry, AccountNum, AccountStatement, BankAccount, Blocked, CashDisc, CashDisc, ClearingPeriod from CustTable
+        select PaymTermId, LineDisc, PartyCountry, AccountNum, AccountStatement, BankAccount, Blocked, CashDisc, ClearingPeriod from CustTable
             where CustTable.RecId == 68719490891;
 
         stopWatch.Stop();

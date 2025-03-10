@@ -52,20 +52,17 @@ internal final class MultiInsertTester extends DatabaseInsertTester
         this.startTimer();
 
         ttsbegin;
-
-        //inline on purpose
         for(int i = 0; i <= this.parmRecordCount(); i++)
         {
             SalesPool.SalesPoolId = int2Str(i);
             SalesPool.Name = int2Str(i);
             SalesPool.insert();
         }
-
         ttscommit;
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::CodeTable);
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseWorkloadType::CodeTable);
 
 
     }
@@ -114,7 +111,7 @@ internal final class MultiInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::PrimaryTable);
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseWorkloadType::PrimaryTable);
     }
 
 ]]></Source>
@@ -188,7 +185,7 @@ internal final class MultiInsertTester extends DatabaseInsertTester
 
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::TransactionTable);
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseWorkloadType::TransactionTable);
 
     }
 
@@ -225,7 +222,7 @@ internal final class MultiInsertTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::CodeDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseWorkloadType::CodeDataEntity);
     }
 
 ]]></Source>
@@ -268,7 +265,7 @@ internal final class MultiInsertTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::PrimaryDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseWorkloadType::PrimaryDataEntity);
     }
 
 ]]></Source>
@@ -347,7 +344,7 @@ internal final class MultiInsertTester extends DatabaseInsertTester
         ttscommit;
         this.stopTimer();
 
-        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseInsertWorkloadType::TransactionDataEntity);
+        this.writeRunHistory(DatabaseInsertTestType::MultiInsert, DatabaseWorkloadType::TransactionDataEntity);
     }
 
 ]]></Source>

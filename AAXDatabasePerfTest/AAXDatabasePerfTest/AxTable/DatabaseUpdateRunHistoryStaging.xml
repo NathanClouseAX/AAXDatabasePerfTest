@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>DatabaseInsertRunHistoryStaging</Name>
+	<Name>DatabaseUpdateRunHistoryStaging</Name>
 	<SourceCode>
 		<Methods />
 	</SourceCode>
 	<DeveloperDocumentation>@DMF:StagingDeveloperDocumentation</DeveloperDocumentation>
+	<Label>Database Update Run History</Label>
 	<TableGroup>Staging</TableGroup>
+	<TitleField1>id</TitleField1>
+	<TitleField2>DatabaseWorkloadType</TitleField2>
 	<PrimaryIndex>StagingIdx</PrimaryIndex>
 	<ReplacementKey>StagingIdx</ReplacementKey>
 	<SaveDataPerCompany>No</SaveDataPerCompany>
@@ -117,9 +120,9 @@
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>DatabaseInsertTestType</Name>
+			<Name>DatabaseUpdateTestType</Name>
 			<IsSystemGenerated>Yes</IsSystemGenerated>
-			<EnumType>DatabaseInsertTestType</EnumType>
+			<EnumType>DatabaseUpdateTestType</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
@@ -129,8 +132,8 @@
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
-			<Name>DatabaseInsertRecordCount</Name>
-			<ExtendedDataType>DatabaseInsertRecordCount</ExtendedDataType>
+			<Name>DatabaseUpdateRecordCount</Name>
+			<ExtendedDataType>DatabaseUpdateRecordCount</ExtendedDataType>
 			<IsSystemGenerated>Yes</IsSystemGenerated>
 		</AxTableField>
 		<AxTableField xmlns=""
@@ -167,7 +170,7 @@
 			<Cardinality>ExactlyOne</Cardinality>
 			<EntityRelationshipRole>@DMF:StagingToDataEntityRelationshipRole</EntityRelationshipRole>
 			<IsSystemGenerated>Yes</IsSystemGenerated>
-			<RelatedTable>DatabaseInsertRunHistoryEntity</RelatedTable>
+			<RelatedTable>DatabaseUpdateRunHistoryEntity</RelatedTable>
 			<RelatedTableCardinality>ZeroOne</RelatedTableCardinality>
 			<RelationshipType>Link</RelationshipType>
 			<Validate>No</Validate>
